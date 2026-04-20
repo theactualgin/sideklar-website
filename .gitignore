@@ -6,3 +6,4 @@ cold-email-tracker.xlsx
 .claude/
 node_modules/
 .next/
+package-lock.json
