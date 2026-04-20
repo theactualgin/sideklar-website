@@ -9,7 +9,7 @@ const inter = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Sideklar | Nettsider for bedrifter",
+  title: "Sideklar - Nettsider, grafisk og teknisk",
   description: "Vi lager profesjonelle nettsider som gir bedriften din flere kunder. Klar på 3 dager.",
 };
 
