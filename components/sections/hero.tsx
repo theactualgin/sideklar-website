@@ -33,7 +33,7 @@ export function Hero() {
         <div className="mt-16 flex flex-wrap justify-center gap-12">
           {[
             { num: "3", unit: "dager", label: "Leveringstid" },
-            { num: "7 500", unit: "kr", label: "Startpris nettside" },
+            { num: "Gratis", unit: "", label: "Uforpliktende samtale" },
             { num: "100", unit: "%", label: "Mobiloptimalisert" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
