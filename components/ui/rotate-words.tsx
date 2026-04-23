@@ -14,7 +14,7 @@ export function RotateWords({ text, words }: { text: string; words: string[] }) 
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-x-4 text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-tight">
+    <div className="flex flex-wrap items-center justify-center gap-x-4 text-4xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-tight">
       <span className="text-[#0F0F0F] dark:text-white">{text}</span>
       <AnimatePresence mode="wait">
         <motion.span key={words[index]} className="text-[#2BC48A] inline-flex">
