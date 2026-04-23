@@ -81,8 +81,8 @@ export function RetainerPricing() {
           </p>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-8 items-stretch">
+        {/* Cards — horizontal swipe on mobile, grid on desktop */}
+        <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-pl-6 pb-4 md:pb-0 -mx-6 md:mx-0 px-6 md:px-0 scrollbar-none">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -95,7 +95,7 @@ export function RetainerPricing() {
                   ? { scale: 1.06, transition: { duration: 0.2 } }
                   : { scale: 1.03, rotate: i === 0 ? -1 : 1, transition: { duration: 0.2 } }
               }
-              className="relative cursor-default"
+              className="relative cursor-default flex-none w-[82vw] sm:w-[360px] md:w-auto snap-start"
             >
               {/* Most popular badge */}
               {plan.popular && (
