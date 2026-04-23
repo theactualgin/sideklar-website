@@ -11,8 +11,36 @@ const inter = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Sideklar - Nettsider, grafisk og teknisk",
-  description: "Vi lager profesjonelle nettsider som gir bedriften din flere kunder. Klar på 3 dager.",
+  title: "Sideklar — Nettsider og grafisk profil for norske bedrifter",
+  description: "Vi lager profesjonelle nettsider, logoer og grafisk profil for norske bedrifter. Klar på 3 dager, ærlig pris og uten teknisk stress.",
+  metadataBase: new URL("https://www.sideklar.no"),
+  openGraph: {
+    title: "Sideklar — Nettsider og grafisk profil for norske bedrifter",
+    description: "Vi lager profesjonelle nettsider, logoer og grafisk profil for norske bedrifter. Klar på 3 dager, ærlig pris og uten teknisk stress.",
+    url: "https://www.sideklar.no",
+    siteName: "Sideklar",
+    locale: "nb_NO",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sideklar — Nettsider og grafisk profil for norske bedrifter",
+    description: "Vi lager profesjonelle nettsider, logoer og grafisk profil for norske bedrifter. Klar på 3 dager.",
+  },
+  robots: { index: true, follow: true },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Sideklar",
+  url: "https://www.sideklar.no",
+  email: "hei@sideklar.no",
+  description: "Vi lager profesjonelle nettsider, logoer og grafisk profil for norske bedrifter.",
+  areaServed: "NO",
+  founder: { "@type": "Person", name: "Noah Lie" },
+  serviceType: ["Web Design", "Web Development", "Graphic Design", "SEO", "Logo Design"],
+  priceRange: "$$",
 };
 
 export default function RootLayout({
@@ -23,6 +51,10 @@ export default function RootLayout({
   return (
     <html lang="nb" className={`${inter.variable}`}>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-G3DNGZTD8V"
           strategy="afterInteractive"

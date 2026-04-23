@@ -93,7 +93,10 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-16 pt-6 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#9CA3AF]">
-          <span>© {new Date().getFullYear()} Sideklar. Alle rettigheter forbeholdt.</span>
+          <div className="flex items-center gap-4">
+            <span>© {new Date().getFullYear()} Sideklar. Alle rettigheter forbeholdt.</span>
+            <a href="/personvern" className="hover:text-[#6B7280] transition-colors">Personvern</a>
+          </div>
           <span>Laget med <span className="text-[#3ADBA1]">♥</span> i Norge</span>
         </div>
       </div>
