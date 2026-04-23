@@ -30,7 +30,7 @@ export function Hero() {
             Priskalkulator — få et estimat
           </a>
         </div>
-        <div className="mt-16 flex flex-wrap justify-center gap-12">
+        <div className="mt-16 grid grid-cols-3 gap-4 max-w-sm mx-auto sm:flex sm:flex-wrap sm:justify-center sm:gap-12 sm:max-w-none">
           {[
             { num: "3", unit: "dager", label: "Leveringstid" },
             { num: "Gratis", unit: "", label: "Uforpliktende samtale" },

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { RetainerModal } from "@/components/ui/retainer-modal";
 
@@ -57,6 +57,16 @@ const plans = [
 export function RetainerPricing() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("Vekst");
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const card = el.children[1] as HTMLElement;
+    if (card) {
+      el.scrollLeft = card.offsetLeft - el.offsetLeft - (el.offsetWidth - card.offsetWidth) / 2;
+    }
+  }, []);
 
   function openModal(planName: string) {
     setSelectedPlan(planName);
@@ -82,7 +92,7 @@ export function RetainerPricing() {
         </motion.div>
 
         {/* Cards — horizontal swipe on mobile, grid on desktop */}
-        <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-pl-6 pb-4 md:pb-0 -mx-6 md:mx-0 px-6 md:px-0 scrollbar-none">
+        <div ref={scrollRef} className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-pl-6 pb-4 md:pb-0 -mx-6 md:mx-0 px-6 md:px-0 scrollbar-none">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}

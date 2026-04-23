@@ -62,7 +62,7 @@ export function ChatWidget() {
             exit={{ opacity: 0, y: 16, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             style={{ transformOrigin: "bottom right" }}
-            className="w-[400px] bg-white rounded-2xl shadow-2xl shadow-gray-200 border border-gray-100 overflow-hidden flex flex-col max-h-[min(600px,80vh)]"
+            className="w-[calc(100vw-3rem)] sm:w-[400px] bg-white rounded-2xl shadow-2xl shadow-gray-200 border border-gray-100 overflow-hidden flex flex-col max-h-[min(600px,80vh)]"
           >
             {/* Teal accent bar */}
             <div className="h-1 bg-[#3ADBA1]" />
