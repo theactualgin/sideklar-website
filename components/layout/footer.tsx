@@ -22,7 +22,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#0F0F0F] text-white">
+    <footer className="bg-[#F3F4F6] text-[#0F0F0F]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-10">
 
         {/* Main grid */}
@@ -31,24 +31,24 @@ export function Footer() {
           {/* Brand */}
           <div>
             <a href="/" className="inline-block mb-6">
-              <img src="/sideklar-logo-white.svg" alt="Sideklar" className="h-8 w-auto" />
+              <img src="/sideklar-logo.svg" alt="Sideklar" className="h-8 w-auto" />
             </a>
-            <p className="text-sm text-white/50 leading-relaxed max-w-xs mb-6">
+            <p className="text-sm text-[#6B7280] leading-relaxed max-w-xs mb-6">
               Vi lager nettsider, logoer og grafisk profil for norske bedrifter — raskt, ærlig og uten teknisk stress.
             </p>
-            <p className="text-xs text-white/25 leading-relaxed">
-              <span className="font-semibold text-white/40">sideklar</span>{" "}
+            <p className="text-xs text-[#9CA3AF] leading-relaxed">
+              <span className="font-semibold text-[#6B7280]">sideklar</span>{" "}
               <em>[adj.]</em> — klar til å gå på nett. Profesjonell digital tilstedeværelse, levert på dager.
             </p>
           </div>
 
           {/* Tjenester */}
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-5">Tjenester</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[#9CA3AF] mb-5">Tjenester</p>
             <ul className="space-y-3">
               {tjenesterLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-sm text-white/50 hover:text-[#3ADBA1] transition-colors">
+                  <a href={l.href} className="text-sm text-[#6B7280] hover:text-[#3ADBA1] transition-colors">
                     {l.label}
                   </a>
                 </li>
@@ -58,11 +58,11 @@ export function Footer() {
 
           {/* Selskapet */}
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-5">Selskapet</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[#9CA3AF] mb-5">Selskapet</p>
             <ul className="space-y-3">
               {selskapLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-sm text-white/50 hover:text-[#3ADBA1] transition-colors">
+                  <a href={l.href} className="text-sm text-[#6B7280] hover:text-[#3ADBA1] transition-colors">
                     {l.label}
                   </a>
                 </li>
@@ -72,8 +72,8 @@ export function Footer() {
 
           {/* CTA */}
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-5">Kom i gang</p>
-            <p className="text-sm text-white/50 leading-relaxed mb-6">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[#9CA3AF] mb-5">Kom i gang</p>
+            <p className="text-sm text-[#6B7280] leading-relaxed mb-6">
               Gratis og uforpliktende. Vi svarer innen én arbeidsdag.
             </p>
             <button
@@ -84,7 +84,7 @@ export function Footer() {
             </button>
             <a
               href="mailto:hei@sideklar.no"
-              className="block mt-4 text-xs text-white/30 hover:text-white/60 transition-colors text-center"
+              className="block mt-4 text-xs text-[#9CA3AF] hover:text-[#6B7280] transition-colors text-center"
             >
               hei@sideklar.no
             </a>
@@ -92,7 +92,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/25">
+        <div className="mt-16 pt-6 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#9CA3AF]">
           <span>© {new Date().getFullYear()} Sideklar. Alle rettigheter forbeholdt.</span>
           <span>Laget med ♥ i Norge</span>
         </div>
