@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Eye, MousePointer, Layout, Code, Pen, Search, Plug } from "lucide-react";
+import { Eye, MousePointer, Layout, Code, Pen, Search, Plug, Workflow } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
 
 const services = [
@@ -75,7 +75,7 @@ export function HowItWorks() {
         </AnimatePresence>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 24 }}
@@ -83,8 +83,15 @@ export function HowItWorks() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
         >
-          <div className="text-xs font-semibold uppercase tracking-widest text-white/70 mb-3">Slik fungerer det</div>
-          <h2 className="text-4xl font-bold text-[#0F0F0F]">Enkelt, raskt og uten stress</h2>
+          <div className="mb-3 inline-flex items-center gap-2">
+            <div className="flex h-6 w-6 items-center justify-center rounded bg-white/20">
+              <Workflow className="h-3 w-3 text-white" />
+            </div>
+            <span className="text-sm text-white/70">Slik fungerer det</span>
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-[#0F0F0F] md:text-4xl lg:text-5xl">
+            Enkelt, raskt og <span className="text-white">uten stress.</span>
+          </h2>
           <p className="mt-4 text-[#0F0F0F]/60">Du trenger ingen teknisk erfaring. Vi tar oss av alt.</p>
         </motion.div>
         <div className="grid md:grid-cols-3 gap-8">

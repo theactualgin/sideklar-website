@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { animate, motion, useMotionValue } from "framer-motion";
-import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, BookOpen } from "lucide-react";
 import { articles } from "@/lib/articles";
 
 export function ArticlesSlider() {
@@ -30,7 +30,7 @@ export function ArticlesSlider() {
 
   return (
     <section className="py-24 px-6 bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           className="mb-10 flex items-end justify-between"
           initial={{ opacity: 0, y: 24 }}
@@ -39,8 +39,15 @@ export function ArticlesSlider() {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <div className="text-xs font-semibold uppercase tracking-widest text-[#3ADBA1] mb-3">Artikler</div>
-            <h2 className="text-4xl font-bold text-[#0F0F0F]">Les og lær</h2>
+            <div className="mb-3 flex items-center gap-2">
+              <div className="flex h-6 w-6 items-center justify-center rounded bg-[#E6FAF4]">
+                <BookOpen className="h-3 w-3 text-[#3ADBA1]" />
+              </div>
+              <span className="text-sm text-[#6B7280]">Blogg</span>
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight text-[#0F0F0F] md:text-4xl">
+              Les og <span className="text-[#3ADBA1]">lær.</span>
+            </h2>
           </div>
           <a
             href="/artikler"
@@ -80,7 +87,7 @@ export function ArticlesSlider() {
               <motion.a
                 key={article.id}
                 href={`/artikler/${article.slug}`}
-                className="min-w-[300px] max-w-[300px] bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm group"
+                className="min-w-[300px] max-w-[300px] bg-[#F3F4F6] rounded-2xl overflow-hidden group"
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
               >
                 {/* Image */}
@@ -92,7 +99,7 @@ export function ArticlesSlider() {
                     draggable={false}
                   />
                   <div className="absolute top-3 left-3">
-                    <span className="bg-white/90 backdrop-blur-sm text-[#0F0F0F] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                    <span className="bg-[#E6FAF4] text-[#3ADBA1] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
                       {article.category}
                     </span>
                   </div>
@@ -106,7 +113,7 @@ export function ArticlesSlider() {
                   <p className="text-xs text-[#6B7280] leading-relaxed line-clamp-3">
                     {article.description}
                   </p>
-                  <div className="flex items-center justify-between pt-2 border-t border-gray-100 mt-auto">
+                  <div className="flex items-center justify-between pt-2 border-t border-gray-200 mt-auto">
                     <span className="text-[11px] text-[#6B7280]">{article.date}</span>
                     <span className="flex items-center gap-1 text-[11px] text-[#6B7280]">
                       <Clock size={11} />

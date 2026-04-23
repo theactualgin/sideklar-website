@@ -9,7 +9,7 @@ export function CTA() {
   }
 
   return (
-    <section className="pt-24 pb-16 px-6 bg-[#FAFAFA]">
+    <section className="pt-24 pb-16 px-6 bg-white">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
