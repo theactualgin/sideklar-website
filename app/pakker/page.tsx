@@ -1,5 +1,6 @@
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
+import { PageIntro } from "@/components/ui/PageIntro";
 import { RetainerIntro } from "@/components/sections/retainer-intro";
 import { RetainerPricing } from "@/components/sections/retainer-pricing";
 import { RetainerCredibility } from "@/components/sections/retainer-credibility";
@@ -10,13 +11,13 @@ export default function PakkerPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main><PageIntro>
         <RetainerIntro />
         <RetainerPricing />
         <RetainerCredibility />
         <RetainerFaq />
         <RetainerCta />
-      </main>
+      </PageIntro></main>
       <Footer />
     </>
   );

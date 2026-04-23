@@ -1,6 +1,7 @@
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { ChatWidget } from "@/components/ui/chat-widget";
+import { PageIntro } from "@/components/ui/PageIntro";
 
 const tjenester = [
   {
@@ -24,7 +25,7 @@ export default function TjenesterPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main><PageIntro>
         <section className="py-24 px-6 bg-[#FAFAFA]">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <div className="text-xs font-semibold uppercase tracking-widest text-[#3ADBA1] mb-3">Hva vi tilbyr</div>
@@ -50,7 +51,7 @@ export default function TjenesterPage() {
             ))}
           </div>
         </section>
-      </main>
+      </PageIntro></main>
       <Footer />
       <ChatWidget />
     </>

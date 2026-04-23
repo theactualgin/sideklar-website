@@ -43,6 +43,13 @@ export default function OmPage() {
                     priority
                   />
                 </div>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="w-8 h-1 bg-[#3ADBA1] rounded-full" />
+                  <div>
+                    <p className="font-bold text-[#0F0F0F] text-sm">Noah Lie</p>
+                    <p className="text-xs text-[#6B7280]">Grunnlegger & utvikler</p>
+                  </div>
+                </div>
               </motion.div>
 
               {/* Right — Text */}
