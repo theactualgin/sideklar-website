@@ -43,6 +43,25 @@ const jsonLd = {
   priceRange: "$$",
 };
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Sideklar",
+  url: "https://www.sideklar.no",
+};
+
+const navJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: [
+    { "@type": "SiteNavigationElement", position: 1, name: "Tjenester", url: "https://www.sideklar.no/tjenester" },
+    { "@type": "SiteNavigationElement", position: 2, name: "Pakker", url: "https://www.sideklar.no/pakker" },
+    { "@type": "SiteNavigationElement", position: 3, name: "Prosjekter", url: "https://www.sideklar.no/prosjekter" },
+    { "@type": "SiteNavigationElement", position: 4, name: "Artikler", url: "https://www.sideklar.no/artikler" },
+    { "@type": "SiteNavigationElement", position: 5, name: "Om oss", url: "https://www.sideklar.no/om" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,6 +73,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(navJsonLd) }}
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-G3DNGZTD8V"
