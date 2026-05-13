@@ -44,7 +44,7 @@ export function ChatWidget() {
       await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, topic }),
+        body: JSON.stringify({ type: "kontakt", name: form.navn, email: form.epost, message: `Tema: ${topic}\n\n${form.melding}` }),
       });
     } catch {}
     setLoading(false);

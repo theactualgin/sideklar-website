@@ -242,6 +242,7 @@ export default function PriskalkulatorPage() {
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
   const [contact, setContact] = useState({ navn: "", epost: "", melding: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const [dir, setDir] = useState(1);
 
   const totalSteps = STEPS.length + 1; // +1 for result step
@@ -481,10 +482,27 @@ export default function PriskalkulatorPage() {
                 <div>
                   <button
                     type="button"
-                    onClick={() => setSubmitted(true)}
-                    disabled={!canProceed}
+                    onClick={async () => {
+                      setSending(true);
+                      const summary = Object.entries(answers)
+                        .map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(", ") : v}`)
+                        .join("\n");
+                      await fetch("/api/contact", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          type: "priskalkulator",
+                          name: contact.navn,
+                          email: contact.epost,
+                          message: `${contact.melding ? contact.melding + "\n\n" : ""}Kalkulatorsvar:\n${summary}`,
+                        }),
+                      }).catch(() => {});
+                      setSending(false);
+                      setSubmitted(true);
+                    }}
+                    disabled={!canProceed || sending}
                     className={`w-full flex items-center justify-center gap-2 py-4 rounded-full font-semibold transition-all ${
-                      canProceed
+                      canProceed && !sending
                         ? "bg-[#3ADBA1] text-white hover:bg-[#2BC48A]"
                         : "bg-gray-100 text-gray-300 cursor-not-allowed"
                     }`}
