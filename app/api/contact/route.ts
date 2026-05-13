@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const TO = "sideklar@gmail.com";
-// TODO: once a domain is verified in Resend, change FROM to e.g. "hei@sideklar.no"
-const FROM = "onboarding@resend.dev";
+const TO = "noah@sideklar.no";
+const FROM = "hei@sideklar.no";
 
 function formatBody(body: Record<string, string>): string {
   return Object.entries(body)
@@ -15,6 +12,7 @@ function formatBody(body: Record<string, string>): string {
 }
 
 export async function POST(request: Request) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const body = await request.json();
 
   const isRetainer = body.type === "retainer";

@@ -1,6 +1,7 @@
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
+import { ProsjekterPreview } from "@/components/sections/prosjekter-preview";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { FAQ } from "@/components/sections/faq";
 import { ArticlesSlider } from "@/components/sections/articles-slider";
@@ -13,6 +14,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <ProsjekterPreview />
         <HowItWorks />
         <FAQ />
         <ArticlesSlider />
