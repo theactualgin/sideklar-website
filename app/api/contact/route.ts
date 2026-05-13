@@ -38,7 +38,8 @@ export async function POST(request: Request) {
   });
 
   try {
-    await resend.emails.send({ from: FROM, to: TO, subject, text });
+    const result = await resend.emails.send({ from: FROM, to: TO, subject, text });
+    console.log("Resend result:", JSON.stringify(result));
   } catch (err) {
     console.error("Resend error:", err);
     return NextResponse.json({ ok: false }, { status: 500 });
