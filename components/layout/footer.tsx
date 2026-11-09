@@ -1,5 +1,7 @@
 "use client";
 
+import { Logo } from "@/components/ui/logo";
+
 const tjenesterLinks = [
   { label: "Nettside", href: "/tjenester" },
   { label: "Logo & Grafisk profil", href: "/tjenester" },
@@ -31,7 +33,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <a href="/" className="inline-block mb-6">
-              <img src="/sideklar-logo.svg" alt="Sideklar" className="h-8 w-auto" />
+              <Logo />
             </a>
             <p className="text-sm text-[#6B7280] leading-relaxed max-w-xs mb-6">
               Vi lager nettsider, logoer og grafisk profil for norske bedrifter — raskt, ærlig og uten teknisk stress.

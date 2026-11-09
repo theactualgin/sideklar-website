@@ -24,18 +24,18 @@ export function ProsjekterPreview() {
               <div className="flex h-6 w-6 items-center justify-center rounded bg-[#E6FAF4]">
                 <Briefcase className="h-3 w-3 text-[#3ADBA1]" />
               </div>
-              <span className="text-sm text-[#6B7280]">Prosjektreferanser</span>
+              <span className="text-sm text-[#6B7280]">Konsepter og eksempler</span>
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-[#0F0F0F] md:text-4xl">
               Utvalgte{" "}
-              <span className="text-[#3ADBA1]">prosjekter.</span>
+              <span className="text-[#3ADBA1]">konsepter.</span>
             </h2>
           </div>
           <a
             href="/prosjekter"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#3ADBA1] hover:underline underline-offset-4 transition-colors self-start md:self-auto"
           >
-            Se alle prosjekter
+            Se alle konsepter
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </motion.div>

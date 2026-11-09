@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/layout/nav";
 
 export const metadata: Metadata = {
-  title: "Prosjekter - Se våre kundearbeider | Sideklar",
-  description: "Se utvalgte prosjekter vi har levert for norske bedrifter - nettsider, logoer og grafisk profil.",
+  title: "Prosjekter - Se våre konsepter | Sideklar",
+  description: "Se utvalgte konsepter og eksempler på nettsider vi lager for norske bedrifter.",
   openGraph: {
-    title: "Prosjekter - Se våre kundearbeider | Sideklar",
-    description: "Se utvalgte prosjekter vi har levert for norske bedrifter - nettsider, logoer og grafisk profil.",
+    title: "Prosjekter - Se våre konsepter | Sideklar",
+    description: "Se utvalgte konsepter og eksempler på nettsider vi lager for norske bedrifter.",
     url: "https://www.sideklar.no/prosjekter",
   },
 };

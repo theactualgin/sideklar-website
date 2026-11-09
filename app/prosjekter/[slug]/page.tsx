@@ -24,15 +24,16 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       <Nav />
       <main>
         {/* Hero image */}
-        <div className="relative h-72 md:h-[420px] overflow-hidden">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 px-6 pb-8 max-w-4xl mx-auto">
-            <span className="bg-white/90 backdrop-blur-sm text-[#0F0F0F] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+        <div className="bg-[#F3F4F6] pt-28 pb-12 px-4 sm:px-6">
+          <div className="mx-auto max-w-5xl">
+            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl shadow-gray-300/40">
+              <img
+                src={project.image}
+                alt={`${project.title} (konseptdesign)`}
+                className="block w-full h-auto"
+              />
+            </div>
+            <span className="mt-5 inline-block bg-white text-[#0F0F0F] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-gray-200">
               {project.category}
             </span>
           </div>
@@ -56,15 +57,15 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
                 <div className="space-y-8">
                   <div>
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-3">Utfordringen</h2>
+                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-3">Utgangspunktet</h2>
                     <p className="text-[#6B7280] leading-relaxed">{project.challenge}</p>
                   </div>
                   <div>
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-3">Løsningen</h2>
+                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-3">Konseptet</h2>
                     <p className="text-[#6B7280] leading-relaxed">{project.solution}</p>
                   </div>
                   <div>
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-3">Resultatet</h2>
+                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-3">Om konseptet</h2>
                     <p className="text-[#6B7280] leading-relaxed">{project.result}</p>
                   </div>
                 </div>

@@ -51,10 +51,10 @@ export function ProsjekterGrid() {
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h1 className="text-3xl font-bold tracking-tight text-[#0F0F0F] md:text-4xl lg:text-5xl">
               Utvalgte{" "}
-              <span style={{ color: COLORS.accent }}>prosjekter.</span>
+              <span style={{ color: COLORS.accent }}>konsepter.</span>
             </h1>
             <p className="text-[#6B7280] max-w-sm leading-relaxed text-sm md:text-base">
-              Nettsider, logoer og grafiske profiler vi har laget for norske bedrifter.
+              Konsepter som viser hva vi kan lage for din bedrift: nettsider, logoer og grafisk profil.
             </p>
           </div>
         </motion.div>

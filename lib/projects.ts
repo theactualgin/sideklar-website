@@ -16,40 +16,36 @@ export const projects: Project[] = [
   {
     slug: "fredrikfikser",
     title: "FredrikFikser",
-    category: "Nettside",
-    description: "Håndverkerbedrift i Oslo. Komplett nettside med CMS, tjenesteoversikt og kontaktskjema.",
+    category: "Konsept",
+    description:
+      "Konseptdesign for en håndverkerbedrift i Oslo: tydelig tjenesteoversikt, referanser og enkel kontakt.",
     year: "2026",
-    image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=80",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-    ],
-    services: ["Nettside", "CMS", "SEO-oppsett", "Kontaktskjema"],
+    image: "/projects/ffse.jpg",
+    images: ["/projects/ffse.jpg"],
+    services: ["Nettside", "Webdesign", "SEO-oppsett", "Kontaktskjema"],
     challenge:
-      "FredrikFikser hadde kun en enkel landingsside som var vanskelig å navigere og ikke ga et profesjonelt inntrykk. Tjenestene deres — oppussing, bad, snekker, flislegging, gulv, maling og kjøkken — var knapt synlige, og potensielle kunder fant ikke frem.",
+      "Mange håndverkerbedrifter har en enkel landingsside der tjenestene knapt synes og det er vanskelig å ta kontakt. Utgangspunktet for konseptet var en bedrift som tilbyr oppussing, bad, snekkerarbeid, flislegging, gulv, maling og kjøkken, uten at besøkende raskt ser hva som tilbys.",
     solution:
-      "Vi bygde en komplett nettside med tydelig tjenesteoversikt, referanseprosjekter og et enkelt kontaktskjema. Et innebygd CMS gjør at Fredrik selv kan oppdatere innhold, legge til prosjekter og holde siden levende uten teknisk hjelp.",
+      "Vi tegnet og bygde en komplett nettside som et konsept: tydelig tjenesteoversikt, plass til referanseprosjekter, tillitssignaler og et enkelt kontaktskjema, med innhold som kan oppdateres uten teknisk hjelp.",
     result:
-      "Bedre konvertering og en enklere kundeopplevelse. Kundene finner raskt frem til riktig tjeneste og kan enkelt ta kontakt direkte fra siden.",
+      "Dette er et konsept vi har laget for å vise hva vi kan levere, ikke en levert kundeløsning. Ønsker du noe lignende for din bedrift, bygger vi det på 1–3 dager.",
   },
   {
     slug: "hof-il",
     title: "Hof IL",
-    category: "Nettside",
-    description: "Redesign av nettside for idrettslag med over 125 års historie. Moderne løsning med CMS.",
+    category: "Konsept",
+    description:
+      "Konseptdesign for et idrettslag med over 125 års historie: moderne forside, kampoversikt og nyhetsløsning.",
     year: "2026",
-    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80",
-      "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1200&q=80",
-    ],
-    services: ["Nettside", "CMS", "Redesign"],
+    image: "/projects/hofil.jpg",
+    images: ["/projects/hofil.jpg"],
+    services: ["Nettside", "Redesign", "CMS"],
     challenge:
-      "Hof IL hadde en svært utdatert nettside som verken reflekterte klubbens stolthet eller fungerte godt for medlemmer og foresatte. Innholdet var vanskelig å holde oppdatert, og siden ga ikke et godt bilde av alt idrettslaget tilbyr.",
+      "Idrettslag har ofte nettsider som er vanskelige å holde oppdatert og som ikke gjenspeiler alt klubben tilbyr. Utgangspunktet var en klubb med mange grupper, kamper og nyheter som skal være lett å finne for medlemmer og foresatte.",
     solution:
-      "Vi redesignet nettsiden fra bunnen med fokus på oversikt over grupper, nyheter og arrangementer. Et brukervennlig CMS gjør det enkelt for klubben å holde innholdet oppdatert uten teknisk kompetanse — uansett hvem som sitter med ansvaret.",
+      "Vi laget et redesign-konsept med oversikt over grupper, kamper og nyheter, og et enkelt innholdssystem slik at klubben selv kan publisere uten teknisk kompetanse.",
     result:
-      "Bedre konvertering og en enklere brukeropplevelse for medlemmer, foresatte og nye interessenter. Klubben kan nå selv oppdatere innholdet raskt og enkelt.",
+      "Dette er et konsept vi har laget for å vise hva vi kan levere, ikke en levert kundeløsning. Ønsker du noe lignende for din forening eller bedrift, tar vi gjerne en uforpliktende prat.",
   },
 ];
 

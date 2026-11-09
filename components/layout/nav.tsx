@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { MenuVertical } from "@/components/ui/menu-vertical";
+import { Logo } from "@/components/ui/logo";
 
 const navLinks = [
   { label: "Tjenester", href: "/tjenester" },
@@ -25,8 +26,7 @@ export function Nav() {
     <nav className="bg-white border-b border-gray-100">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/">
-          <img src="/sideklar-logo.svg" alt="Sideklar" className="h-8 w-auto dark:hidden" />
-          <img src="/sideklar-logo-white.svg" alt="Sideklar" className="h-8 w-auto hidden dark:block" />
+          <Logo />
         </a>
         <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-[#6B7280] dark:text-[#9CA3AF]">
           {navLinks.map((link) => (
