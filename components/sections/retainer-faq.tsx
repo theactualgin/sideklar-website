@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 const faqs = [
   {
@@ -40,78 +39,51 @@ const faqs = [
 ];
 
 export function RetainerFaq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 px-6 bg-white">
-      <div className="max-w-2xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <motion.div
-            initial={{ scale: 0.8 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
-            className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#3ADBA1]/15 mb-4"
-          >
-            <HelpCircle size={22} className="text-[#3ADBA1]" />
-          </motion.div>
-          <div className="text-xs font-semibold uppercase tracking-widest text-[#3ADBA1] mb-3">Spørsmål og svar</div>
-          <h2 className="text-4xl font-bold text-[#0F0F0F]">Vanlige spørsmål</h2>
-        </motion.div>
+    <section className="bg-white px-6 pb-24 md:pb-32">
+      <div className="mx-auto grid max-w-6xl gap-12 border-t border-[#0A2349]/10 pt-20 md:grid-cols-[1fr_1.6fr] md:gap-20 md:pt-28">
+        <div className="md:sticky md:top-12 md:self-start">
+          <p className="mb-4 text-sm font-medium text-[#0A2349]/55">Spørsmål og svar</p>
+          <h2 className="text-4xl font-bold leading-[1.05] tracking-tight text-[#0A2349] md:text-6xl">Vanlige spørsmål</h2>
+        </div>
 
-        <motion.div
-          className="space-y-3"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-40px" }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
-        >
-          {faqs.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <motion.div
-                key={i}
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as any } } }}
-                className={`bg-white rounded-xl border overflow-hidden transition-colors duration-200 ${isOpen ? "border-[#3ADBA1]/50 shadow-sm" : "border-gray-100"}`}
-              >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between px-6 py-5 text-left"
-                >
-                  <span className="font-semibold text-[#0F0F0F] pr-4">{faq.q}</span>
-                  <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="shrink-0 text-[#3ADBA1]"
+        <Reveal>
+          <div className="border-b border-[#0A2349]/10">
+            {faqs.map((faq, i) => {
+              const isOpen = openIndex === i;
+              return (
+                <div key={faq.q} className="border-t border-[#0A2349]/10">
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
                   >
-                    <ChevronDown size={18} />
-                  </motion.div>
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                    <span className="text-lg font-semibold tracking-tight text-[#0A2349]">{faq.q}</span>
+                    <span
+                      aria-hidden="true"
+                      className={`shrink-0 text-2xl leading-none text-[#0A2349] transition-transform duration-300 ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
                     >
-                      <div className="px-6 pb-5 text-[#6B7280] leading-relaxed text-sm">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                      +
+                    </span>
+                  </button>
+                  <div
+                    className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="max-w-xl pb-6 text-[15px] leading-relaxed text-[#0A2349]/70">{faq.a}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

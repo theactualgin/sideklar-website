@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { SiteButton } from "@/components/ui/site-button";
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -31,18 +32,12 @@ export default function CookieBanner() {
           <span className="text-[#0F0F0F] font-medium">Godtar du dette?</span>
         </p>
         <div className="flex gap-2 shrink-0">
-          <button
-            onClick={decline}
-            className="text-sm px-4 py-2 rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors"
-          >
+          <SiteButton variant="outline" size="sm" onClick={decline}>
             Avslå
-          </button>
-          <button
-            onClick={accept}
-            className="text-sm px-4 py-2 rounded-xl bg-[#3ADBA1] text-[#0F0F0F] font-medium hover:bg-[#2bc990] transition-colors"
-          >
+          </SiteButton>
+          <SiteButton size="sm" onClick={accept}>
             Godta
-          </button>
+          </SiteButton>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/reveal";
+import { SiteButton } from "@/components/ui/site-button";
 
 export function CTA() {
   function openChat() {
@@ -9,27 +10,22 @@ export function CTA() {
   }
 
   return (
-    <section className="pt-24 pb-16 px-6 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="bg-[#3ADBA1] rounded-2xl px-10 py-16 text-center"
-        >
-          <h2 className="text-4xl font-bold text-[#0F0F0F] mb-4">Klar for å komme i gang?</h2>
-          <p className="text-[#0F0F0F]/60 mb-8 leading-relaxed">
-            Fortell oss om bedriften din, så har vi nettsiden klar på 1–3 dager.
-          </p>
-          <button
-            onClick={openChat}
-            className="inline-flex items-center gap-2 bg-[#0F0F0F] text-white font-semibold px-7 py-3.5 rounded-full hover:bg-[#1a1a1a] transition-colors"
-          >
-            Ta kontakt →
-          </button>
-        </motion.div>
-      </div>
+    <section className="bg-white px-6 pb-24 md:pb-32">
+      <Reveal>
+        <div className="mx-auto grid max-w-6xl gap-10 border-t border-[#0A2349] pt-16 md:grid-cols-[1.4fr_1fr] md:items-end md:gap-20 md:pt-24">
+          <h2 className="text-5xl font-bold leading-[1.02] tracking-tight text-[#0A2349] md:text-7xl">
+            Klar for å komme i gang?
+          </h2>
+          <div>
+            <p className="mb-7 max-w-sm text-base leading-relaxed text-[#0A2349]/70 md:text-lg">
+              Fortell oss om bedriften din, så har vi nettsiden klar på 1–3 dager.
+            </p>
+            <SiteButton size="lg" arrow onClick={openChat}>
+              Ta kontakt
+            </SiteButton>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }

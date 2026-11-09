@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "@/components/layout/nav";
 import { ChatWidget } from "@/components/ui/chat-widget";
-import { Calculator, ArrowRight, ArrowLeft, Check, ChevronDown, Clock, Zap, Globe, Shield, Headphones, FileText } from "lucide-react";
+import { SiteButton } from "@/components/ui/site-button";
+import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 
 // ─── Step definitions ────────────────────────────────────────────────────────
 
@@ -109,32 +110,32 @@ function OptionCard({
     <button
       type="button"
       onClick={onClick}
-      className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-left transition-all duration-150 ${
+      className={`w-full flex items-center gap-4 px-5 py-4 rounded-lg text-left transition-all duration-150 ${
         selected
-          ? "shadow-[inset_0_0_0_3px_#3ADBA1] bg-[#3ADBA1]/8"
-          : "shadow-[inset_0_0_0_1px_#E5E7EB] bg-[#FAFAFA] hover:shadow-[inset_0_0_0_1.5px_#3ADBA1]"
+          ? "shadow-[inset_0_0_0_2px_#0A2349] bg-white"
+          : "shadow-[inset_0_0_0_1px_rgba(10,35,73,0.15)] bg-white hover:shadow-[inset_0_0_0_1px_#0A2349]"
       }`}
     >
       <div className={`shrink-0 w-5 h-5 ${multi ? "rounded-md" : "rounded-full"} border-2 flex items-center justify-center transition-colors duration-150 ${
-        selected ? "border-[#3ADBA1] bg-[#3ADBA1]" : "border-gray-300"
+        selected ? "border-[#0A2349] bg-[#0A2349]" : "border-[#0A2349]/30"
       }`}>
         {selected && <Check size={11} className="text-white" strokeWidth={3} />}
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-semibold text-[#0F0F0F] text-sm">{label}</span>
+          <span className="font-semibold text-[#0A2349] text-sm">{label}</span>
           {tag && (
-            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-gray-100 text-[#6B7280]">
+            <span className="text-xs font-medium text-[#0A2349]/60">
               {tag}
             </span>
           )}
           {!tag && price > 0 && (
-            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-[#3ADBA1]/15 text-[#3ADBA1]">
+            <span className="text-xs font-medium text-[#0A2349]/60">
               +{price.toLocaleString("nb-NO")} kr
             </span>
           )}
         </div>
-        <p className="text-[#6B7280] text-xs mt-0.5">{sub}</p>
+        <p className="text-[#0A2349]/65 text-xs mt-0.5">{sub}</p>
       </div>
     </button>
   );
@@ -156,67 +157,43 @@ const FAQ_ITEMS = [
 function PriceFaq() {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section className="mt-20 max-w-2xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
-      >
-        <motion.div
-          initial={{ scale: 0.8 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
-          className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#3ADBA1]/15 mb-4"
-        >
-          <Calculator size={22} className="text-[#3ADBA1]" />
-        </motion.div>
-        <div className="text-xs font-semibold uppercase tracking-widest text-[#3ADBA1] mb-3">Spørsmål og svar</div>
-        <h2 className="text-4xl font-bold text-[#0F0F0F]">Vanlige spørsmål om pris</h2>
-      </motion.div>
+    <section className="mt-24 max-w-2xl mx-auto">
+      <div className="mb-8">
+        <p className="mb-4 text-sm font-medium text-[#0A2349]/55">Spørsmål og svar</p>
+        <h2 className="text-3xl font-bold tracking-tight text-[#0A2349] md:text-4xl">Vanlige spørsmål om pris</h2>
+      </div>
 
-      <div className="space-y-3">
+      <div className="border-b border-[#0A2349]/10">
         {FAQ_ITEMS.map((item, i) => {
           const isOpen = open === i;
           return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              className={`bg-white rounded-xl border overflow-hidden transition-colors duration-200 ${isOpen ? "border-[#3ADBA1]/50 shadow-sm" : "border-gray-100"}`}
-            >
+            <div key={i} className="border-t border-[#0A2349]/10">
               <button
                 type="button"
                 onClick={() => setOpen(isOpen ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left"
+                aria-expanded={isOpen}
+                className="flex w-full items-center justify-between gap-6 py-5 text-left"
               >
-                <span className="font-semibold text-[#0F0F0F] pr-4">{item.q}</span>
-                <motion.div
-                  animate={{ rotate: isOpen ? 180 : 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="shrink-0 text-[#3ADBA1]"
+                <span className="text-base font-semibold tracking-tight text-[#0A2349]">{item.q}</span>
+                <span
+                  aria-hidden="true"
+                  className={`shrink-0 text-2xl leading-none text-[#0A2349] transition-transform duration-300 ${
+                    isOpen ? "rotate-45" : ""
+                  }`}
                 >
-                  <ChevronDown size={18} />
-                </motion.div>
+                  +
+                </span>
               </button>
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: "easeInOut" }}
-                  >
-                    <div className="px-6 pb-5 text-[#6B7280] leading-relaxed text-sm">{item.a}</div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+              <div
+                className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                  isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <p className="pb-5 text-[15px] leading-relaxed text-[#0A2349]/70">{item.a}</p>
+                </div>
+              </div>
+            </div>
           );
         })}
       </div>
@@ -314,17 +291,17 @@ export default function PriskalkulatorPage() {
     return (
       <>
         <Nav />
-        <div className="min-h-[80vh] bg-[#FAFAFA] flex flex-col items-center justify-center px-6 text-center">
-          <div className="w-16 h-16 rounded-full bg-[#3ADBA1]/15 flex items-center justify-center mb-6">
-            <Check size={28} className="text-[#3ADBA1]" strokeWidth={2.5} />
+        <div className="min-h-[80vh] bg-white flex flex-col items-center justify-center px-6 text-center">
+          <div className="w-16 h-16 rounded-full bg-[#0A2349] flex items-center justify-center mb-6">
+            <Check size={28} className="text-[#0F9F70]" strokeWidth={2.5} />
           </div>
-          <h1 className="text-3xl font-bold text-[#0F0F0F] mb-3">Takk, {contact.navn}!</h1>
-          <p className="text-[#6B7280] max-w-sm">
-            Vi har mottatt forespørselen din og tar kontakt på <span className="text-[#0F0F0F] font-medium">{contact.epost}</span> innen kort tid.
+          <h1 className="text-3xl font-bold text-[#0A2349] mb-3">Takk, {contact.navn}!</h1>
+          <p className="text-[#0A2349]/65 max-w-sm">
+            Vi har mottatt forespørselen din og tar kontakt på <span className="text-[#0A2349] font-medium">{contact.epost}</span> innen kort tid.
           </p>
-          <a href="/" className="mt-10 px-6 py-3 rounded-xl bg-[#3ADBA1] text-white font-semibold hover:bg-[#2BC48A] transition-colors">
+          <SiteButton href="/" size="lg" className="mt-10">
             Tilbake til forsiden
-          </a>
+          </SiteButton>
         </div>
         <ChatWidget />
       </>
@@ -334,36 +311,32 @@ export default function PriskalkulatorPage() {
   return (
     <>
       <Nav />
-      <main className="min-h-[80vh] bg-[#FAFAFA] py-16 px-6">
+      <main className="min-h-[80vh] bg-white px-6 py-16 md:py-24">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#3ADBA1]/40 bg-[#3ADBA1]/10 text-[#3ADBA1] text-xs font-semibold uppercase tracking-widest mb-5">
-              ⚡ Interaktiv kalkulator
+          <div className="mb-12">
+            <div className="mb-4 text-sm font-medium text-[#0A2349]/55">
+              Interaktiv kalkulator
             </div>
-            <h1 className="text-4xl font-bold text-[#0F0F0F] mb-3">Hva vil din nettside koste?</h1>
-            <p className="text-[#6B7280]">Svar på fem enkle spørsmål og få et estimat med en gang. Helt uforpliktende.</p>
+            <h1 className="mb-4 text-5xl font-bold leading-[1.05] tracking-tight text-[#0A2349] md:text-6xl">Hva vil din nettside koste?</h1>
+            <p className="text-[#0A2349]/65">Svar på fem enkle spørsmål og få et estimat med en gang. Helt uforpliktende.</p>
           </div>
 
           {/* Card */}
-          <div ref={cardRef} className="bg-white rounded-3xl border border-gray-100 shadow-xl shadow-gray-100/80 overflow-hidden">
-            <div className="h-1 bg-[#3ADBA1]" />
+          <div ref={cardRef} className="bg-white rounded-xl border border-[#0A2349]/15 overflow-hidden">
             {/* Card header */}
-            <div className="flex items-center gap-4 px-6 py-5 border-b border-gray-100">
-              <div className="w-10 h-10 rounded-xl bg-[#3ADBA1] flex items-center justify-center shrink-0 shadow-md shadow-[#3ADBA1]/25">
-                <Calculator size={18} className="text-white" />
-              </div>
+            <div className="flex items-center gap-4 px-6 py-5 border-b border-[#0A2349]/10">
               <div>
-                <p className="font-bold text-[#0F0F0F] text-sm">Priskalkulator</p>
-                <p className="text-[#6B7280] text-xs">Få et estimat på sekunder — helt uforpliktende</p>
+                <p className="font-semibold text-[#0A2349] text-sm">Priskalkulator</p>
+                <p className="text-[#0A2349]/65 text-xs">Få et estimat på sekunder — helt uforpliktende</p>
               </div>
             </div>
 
             {/* Progress */}
             {!isResult && <div className="px-6 pt-5 pb-2">
-              <div className="flex items-center justify-between text-xs text-[#6B7280] mb-2">
+              <div className="flex items-center justify-between text-xs text-[#0A2349]/65 mb-2">
                 <span>Steg {step + 1} av {totalSteps}</span>
-                <span className="font-semibold text-[#3ADBA1]">{progress}%</span>
+                <span className="font-semibold text-[#0F9F70]">{progress}%</span>
               </div>
               <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                 <motion.div
@@ -387,11 +360,10 @@ export default function PriskalkulatorPage() {
                 >
                   {!isResult ? (
                     <>
-                      <h2 className="text-xl font-bold text-[#0F0F0F] mb-1">{currentStep.title}</h2>
-                      <p className="text-[#6B7280] text-sm mb-4">{currentStep.subtitle}</p>
+                      <h2 className="text-xl font-bold text-[#0A2349] mb-1">{currentStep.title}</h2>
+                      <p className="text-[#0A2349]/65 text-sm mb-4">{currentStep.subtitle}</p>
                       {currentStep.type === "multi" && (
-                        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#3ADBA1]/8 border border-[#3ADBA1]/20 text-[#2BC48A] text-sm mb-5">
-                          <span className="shrink-0">ⓘ</span>
+                        <div className="mb-5 text-sm text-[#0A2349]/60">
                           <span>Du kan velge null eller flere. Gå videre uten valg hvis du er usikker.</span>
                         </div>
                       )}
@@ -417,18 +389,17 @@ export default function PriskalkulatorPage() {
                   ) : (
                     <div>
                       {/* Price card */}
-                      <div className="bg-[#3ADBA1]/10 border border-[#3ADBA1] rounded-2xl overflow-hidden mb-4">
-                        <div className="h-1 bg-[#3ADBA1]" />
+                      <div className="bg-[#0A2349] text-white rounded-xl overflow-hidden mb-4">
                         <div className="p-4">
-                        <p className="text-[#3ADBA1] text-xs font-semibold uppercase tracking-widest mb-2">Estimert pris</p>
-                        <p className="text-[#0F0F0F] font-bold mb-1">
+                        <p className="text-white/60 text-sm font-medium mb-2">Estimert pris</p>
+                        <p className="text-white font-bold mb-1">
                           <span className="text-3xl">{estimate.low.toLocaleString("nb-NO")} kr</span>
-                          <span className="text-xl text-[#0F0F0F]/50 ml-2">– {estimate.high.toLocaleString("nb-NO")} kr</span>
+                          <span className="text-xl text-white/60 ml-2">– {estimate.high.toLocaleString("nb-NO")} kr</span>
                         </p>
-                        <p className="text-[#6B7280] text-xs mb-4">Veiledende estimat. Endelig pris fastsettes etter en prat om prosjektet ditt.</p>
+                        <p className="text-white/65 text-xs mb-4">Veiledende estimat. Endelig pris fastsettes etter en prat om prosjektet ditt.</p>
                         <div className="flex flex-wrap gap-2">
                           {summaryTags.map((tag) => (
-                            <span key={tag} className="text-xs px-3 py-1 rounded-full bg-[#0F0F0F]/8 text-[#0F0F0F]/70">{tag}</span>
+                            <span key={tag} className="text-xs px-3 py-1 rounded-full bg-white/10 text-white/80">{tag}</span>
                           ))}
                         </div>
                         </div>
@@ -437,36 +408,36 @@ export default function PriskalkulatorPage() {
                       {/* Contact form */}
                       <div className="space-y-3">
                         <div>
-                          <label className="text-sm font-semibold text-[#0F0F0F] mb-1.5 block">Navn</label>
+                          <label className="text-sm font-semibold text-[#0A2349] mb-1.5 block">Navn</label>
                           <input
                             value={contact.navn}
                             onChange={(e) => setContact({ ...contact, navn: e.target.value })}
                             placeholder="Ola Nordmann"
-                            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-[#0F0F0F] text-sm placeholder:text-gray-300 focus:outline-none focus:border-[#3ADBA1]"
+                            className="w-full bg-white border border-[#0A2349]/20 rounded-lg px-4 py-3 text-[#0A2349] text-sm placeholder:text-[#0A2349]/35 focus:outline-none focus:border-[#0A2349]"
                           />
                         </div>
                         <div>
-                          <label className="text-sm font-semibold text-[#0F0F0F] mb-1.5 flex items-center gap-1 block">
-                            E-post <span className="text-[#3ADBA1]">*</span>
+                          <label className="text-sm font-semibold text-[#0A2349] mb-1.5 flex items-center gap-1 block">
+                            E-post <span className="text-[#0F9F70]">*</span>
                           </label>
                           <input
                             type="email"
                             value={contact.epost}
                             onChange={(e) => setContact({ ...contact, epost: e.target.value })}
                             placeholder="ola@bedrift.no"
-                            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-[#0F0F0F] text-sm placeholder:text-gray-300 focus:outline-none focus:border-[#3ADBA1]"
+                            className="w-full bg-white border border-[#0A2349]/20 rounded-lg px-4 py-3 text-[#0A2349] text-sm placeholder:text-[#0A2349]/35 focus:outline-none focus:border-[#0A2349]"
                           />
                         </div>
                         <div>
-                          <label className="text-sm font-semibold text-[#0F0F0F] mb-1.5 block">
-                            Fortell litt om prosjektet <span className="text-[#6B7280] font-normal">(valgfritt)</span>
+                          <label className="text-sm font-semibold text-[#0A2349] mb-1.5 block">
+                            Fortell litt om prosjektet <span className="text-[#0A2349]/65 font-normal">(valgfritt)</span>
                           </label>
                           <textarea
                             value={contact.melding}
                             onChange={(e) => setContact({ ...contact, melding: e.target.value })}
                             placeholder="Hva er målet med nettsiden? Hvem er målgruppen?"
                             rows={2}
-                            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-[#0F0F0F] text-sm placeholder:text-gray-300 focus:outline-none focus:border-[#3ADBA1] resize-none"
+                            className="w-full bg-white border border-[#0A2349]/20 rounded-lg px-4 py-3 text-[#0A2349] text-sm placeholder:text-[#0A2349]/35 focus:outline-none focus:border-[#0A2349] resize-none"
                           />
                         </div>
                       </div>
@@ -509,11 +480,11 @@ export default function PriskalkulatorPage() {
                   >
                     Send forespørsel <ArrowRight size={16} />
                   </button>
-                  <p className="text-center text-[#6B7280] text-xs mt-3">Helt uforpliktende. Ingen spam — lover.</p>
+                  <p className="text-center text-[#0A2349]/65 text-xs mt-3">Helt uforpliktende. Ingen spam — lover.</p>
                   <button
                     type="button"
                     onClick={back}
-                    className="flex items-center gap-1 text-[#6B7280] text-sm hover:text-[#0F0F0F] transition-colors mt-4"
+                    className="flex items-center gap-1 text-[#0A2349]/65 text-sm hover:text-[#0A2349] transition-colors mt-4"
                   >
                     <ArrowLeft size={14} /> Endre valg
                   </button>
@@ -524,25 +495,16 @@ export default function PriskalkulatorPage() {
                     <button
                       type="button"
                       onClick={back}
-                      className="flex items-center gap-2 text-[#6B7280] text-sm hover:text-[#0F0F0F] transition-colors"
+                      className="flex items-center gap-2 text-[#0A2349]/65 text-sm hover:text-[#0A2349] transition-colors"
                     >
                       <ArrowLeft size={15} /> Tilbake
                     </button>
                   ) : (
                     <div />
                   )}
-                  <button
-                    type="button"
-                    onClick={next}
-                    disabled={!canProceed}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all ${
-                      canProceed
-                        ? "bg-[#3ADBA1] text-white hover:bg-[#2BC48A]"
-                        : "bg-gray-100 text-gray-300 cursor-not-allowed"
-                    }`}
-                  >
-                    Neste <ArrowRight size={15} />
-                  </button>
+                  <SiteButton onClick={next} disabled={!canProceed} arrow>
+                    Neste
+                  </SiteButton>
                 </div>
               )}
             </div>
@@ -553,42 +515,42 @@ export default function PriskalkulatorPage() {
 
         {/* 1. Editorial article */}
         <section className="mt-24 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#3ADBA1]/40 bg-[#3ADBA1]/10 text-[#3ADBA1] text-xs font-semibold uppercase tracking-widest mb-6">
+          <div className="mb-4 text-sm font-medium text-[#0A2349]/55">
             Prisguide
           </div>
-          <h2 className="text-3xl font-bold text-[#0F0F0F] mb-4">Fra 0 til 100 — hva påvirker prisen?</h2>
-          <p className="text-[#6B7280] leading-relaxed mb-6">
+          <h2 className="text-3xl font-bold text-[#0A2349] mb-4">Fra 0 til 100 — hva påvirker prisen?</h2>
+          <p className="text-[#0A2349]/65 leading-relaxed mb-6">
             Prisen på en nettside avhenger av langt mer enn antall sider. Her er de viktigste faktorene vi ser på når vi setter opp et tilbud.
           </p>
 
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-bold text-[#0F0F0F] mb-2">Type nettside</h3>
-              <p className="text-[#6B7280] leading-relaxed">
+              <h3 className="text-lg font-bold text-[#0A2349] mb-2">Type nettside</h3>
+              <p className="text-[#0A2349]/65 leading-relaxed">
                 En enkel presentasjonsside for en lokal bedrift krever andre løsninger enn en nettbutikk med hundrevis av produkter. Jo mer funksjonalitet, jo mer arbeid — og jo høyere pris.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#0F0F0F] mb-2">Design og branding</h3>
-              <p className="text-[#6B7280] leading-relaxed">
+              <h3 className="text-lg font-bold text-[#0A2349] mb-2">Design og branding</h3>
+              <p className="text-[#0A2349]/65 leading-relaxed">
                 Et unikt, skreddersydd design tar tid å lage — men det gir også et mye sterkere inntrykk og høyere konverteringsrate. Vi tilbyr alt fra rene standardmaler til fullt tilpassede grensesnitt med animasjoner og avansert UX.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#0F0F0F] mb-2">Innhold og tekst</h3>
-              <p className="text-[#6B7280] leading-relaxed">
+              <h3 className="text-lg font-bold text-[#0A2349] mb-2">Innhold og tekst</h3>
+              <p className="text-[#0A2349]/65 leading-relaxed">
                 Mange undervurderer hvor mye arbeid som går inn i godt innhold. Har du tekst og bilder klart, er vi raskere i gang. Trenger du hjelp med copywriting, foto eller grafisk materiale, tar vi oss av det også.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#0F0F0F] mb-2">Integrasjoner og funksjoner</h3>
-              <p className="text-[#6B7280] leading-relaxed">
+              <h3 className="text-lg font-bold text-[#0A2349] mb-2">Integrasjoner og funksjoner</h3>
+              <p className="text-[#0A2349]/65 leading-relaxed">
                 Bookingsystemer, betalingsløsninger, CRM-integrasjoner og brukerinnlogging er alle eksempler på funksjoner som øker kompleksiteten. Disse kan likevel lønne seg raskt hvis de automatiserer oppgaver du ellers gjør manuelt.
               </p>
             </div>
 
-            <blockquote className="border-l-4 border-[#3ADBA1] pl-5 py-1">
-              <p className="text-[#0F0F0F] font-medium leading-relaxed">
+            <blockquote className="border-l-2 border-[#0A2349] pl-5 py-1">
+              <p className="text-[#0A2349] font-medium leading-relaxed">
                 "En god nettside er ikke en kostnad — det er en investering. Vi jobber for at du skal se avkastning."
               </p>
             </blockquote>
@@ -597,29 +559,26 @@ export default function PriskalkulatorPage() {
 
         {/* 2. Features card */}
         <section className="mt-20 max-w-2xl mx-auto">
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-xl shadow-gray-100/80 p-8">
+          <div className="border-t border-[#0A2349] pt-8">
             <div className="mb-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#3ADBA1]/40 bg-[#3ADBA1]/10 text-[#3ADBA1] text-xs font-semibold uppercase tracking-widest mb-4">
+              <div className="mb-4 text-sm font-medium text-[#0A2349]/55">
                 Alltid inkludert
               </div>
-              <h2 className="text-2xl font-bold text-[#0F0F0F]">Hva får du — uansett pakke?</h2>
+              <h2 className="text-2xl font-bold text-[#0A2349]">Hva får du — uansett pakke?</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { icon: Clock, label: "Klar på 3 dager", sub: "Fast leveringstid — ingen venteliste" },
-                { icon: Zap, label: "Rask og optimalisert", sub: "Lastetid under 1 sekund" },
-                { icon: Globe, label: "Mobilresponsiv", sub: "Perfekt på alle skjermstørrelser" },
-                { icon: Shield, label: "SSL og sikkerhet", sub: "HTTPS og grunnleggende sikkerhetstiltak" },
-                { icon: Headphones, label: "30 dagers støtte", sub: "Vi er tilgjengelig etter levering" },
-                { icon: FileText, label: "Kontaktskjema", sub: "Ferdig oppsatt og klart til bruk" },
-              ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="flex items-start gap-3 p-4 rounded-2xl bg-[#FAFAFA] border border-gray-100">
-                  <div className="w-9 h-9 rounded-xl bg-[#3ADBA1]/15 flex items-center justify-center shrink-0">
-                    <Icon size={16} className="text-[#3ADBA1]" />
-                  </div>
+                { label: "Klar på 3 dager", sub: "Fast leveringstid — ingen venteliste" },
+                { label: "Rask og optimalisert", sub: "Lastetid under 1 sekund" },
+                { label: "Mobilresponsiv", sub: "Perfekt på alle skjermstørrelser" },
+                { label: "SSL og sikkerhet", sub: "HTTPS og grunnleggende sikkerhetstiltak" },
+                { label: "30 dagers støtte", sub: "Vi er tilgjengelig etter levering" },
+                { label: "Kontaktskjema", sub: "Ferdig oppsatt og klart til bruk" },
+              ].map(({ label, sub }) => (
+                <div key={label} className="border-t border-[#0A2349]/10 pt-4">
                   <div>
-                    <p className="font-semibold text-[#0F0F0F] text-sm">{label}</p>
-                    <p className="text-[#6B7280] text-xs mt-0.5">{sub}</p>
+                    <p className="font-semibold text-[#0A2349] text-sm">{label}</p>
+                    <p className="text-[#0A2349]/65 text-xs mt-0.5">{sub}</p>
                   </div>
                 </div>
               ))}
@@ -629,10 +588,10 @@ export default function PriskalkulatorPage() {
 
         {/* 3. Process steps */}
         <section className="mt-20 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#3ADBA1]/40 bg-[#3ADBA1]/10 text-[#3ADBA1] text-xs font-semibold uppercase tracking-widest mb-6">
+          <div className="mb-4 text-sm font-medium text-[#0A2349]/55">
             Prosessen
           </div>
-          <h2 className="text-3xl font-bold text-[#0F0F0F] mb-10">Slik jobber vi</h2>
+          <h2 className="text-3xl font-bold text-[#0A2349] mb-10">Slik jobber vi</h2>
           <div className="space-y-0">
             {[
               { n: "01", title: "Du tar kontakt", body: "Send oss forespørselen via kalkulatoren eller kontaktskjemaet. Vi svarer deg innen én arbeidsdag med en uforpliktende prat." },
@@ -640,16 +599,11 @@ export default function PriskalkulatorPage() {
               { n: "03", title: "Design og utvikling", body: "Vi bygger nettsiden din med fokus på brukeropplevelse, hastighet og konvertering. Du følger prosessen og kan gi tilbakemelding underveis." },
               { n: "04", title: "Levering og lansering", body: "Nettsiden leveres innen avtalt tid — som regel 3 virkedager. Vi setter opp domene, e-post og alt du trenger for å komme i gang." },
             ].map(({ n, title, body }, i) => (
-              <div key={n} className="flex gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full border-2 border-[#3ADBA1] bg-[#3ADBA1]/20 flex items-center justify-center shrink-0">
-                    <span className="text-[#3ADBA1] text-xs font-bold">{n}</span>
-                  </div>
-                  {i < 3 && <div className="w-px flex-1 bg-gray-200 my-2" />}
-                </div>
-                <div className={`pb-8 ${i === 3 ? "" : ""}`}>
-                  <h3 className="font-bold text-[#0F0F0F] text-base mb-1">{title}</h3>
-                  <p className="text-[#6B7280] text-sm leading-relaxed">{body}</p>
+              <div key={n} className="grid gap-2 border-t border-[#0A2349]/10 py-6 sm:grid-cols-[4rem_1fr] sm:gap-6">
+                <span className="text-sm font-medium text-[#0F9F70]">{n}</span>
+                <div>
+                  <h3 className="font-bold text-[#0A2349] text-base mb-1">{title}</h3>
+                  <p className="text-[#0A2349]/65 text-sm leading-relaxed">{body}</p>
                 </div>
               </div>
             ))}
@@ -664,18 +618,14 @@ export default function PriskalkulatorPage() {
           <div className="relative bg-white rounded-3xl p-10 text-center overflow-hidden border border-gray-100 shadow-xl shadow-gray-100/80">
             {/* teal top accent bar */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-[#3ADBA1] rounded-t-3xl" />
-            <h2 className="text-3xl font-bold text-[#0F0F0F] mb-3 mt-2">Klar for å bygge din nettside?</h2>
-            <p className="text-[#6B7280] mb-8 max-w-sm mx-auto leading-relaxed">
+            <h2 className="text-3xl font-bold text-[#0A2349] mb-3 mt-2">Klar for å bygge din nettside?</h2>
+            <p className="text-[#0A2349]/65 mb-8 max-w-sm mx-auto leading-relaxed">
               Ta gjerne en uforpliktende prat. Bruk kalkulatoren over, eller send oss en melding direkte.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button
-                type="button"
-                onClick={() => scrollToCard()}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#3ADBA1] text-white font-bold hover:bg-[#2BC48A] transition-colors"
-              >
-                Prøv kalkulatoren <ArrowRight size={16} />
-              </button>
+              <SiteButton onClick={() => scrollToCard()} size="lg" arrow>
+                Prøv kalkulatoren
+              </SiteButton>
               <button
                 type="button"
                 onClick={() => {
@@ -683,7 +633,7 @@ export default function PriskalkulatorPage() {
                     (window as any).openChatWidget();
                   }
                 }}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gray-200 text-[#0F0F0F] font-semibold hover:border-[#3ADBA1] transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gray-200 text-[#0A2349] font-semibold hover:border-[#3ADBA1] transition-colors"
               >
                 Ta kontakt direkte
               </button>

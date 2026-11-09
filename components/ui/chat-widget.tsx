@@ -62,23 +62,19 @@ export function ChatWidget() {
             exit={{ opacity: 0, y: 16, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             style={{ transformOrigin: "bottom right" }}
-            className="w-[calc(100vw-3rem)] sm:w-[400px] bg-white rounded-2xl shadow-2xl shadow-gray-200 border border-gray-100 overflow-hidden flex flex-col max-h-[min(600px,80vh)]"
+            className="w-[calc(100vw-3rem)] sm:w-[400px] bg-white rounded-xl shadow-[0_8px_30px_rgba(10,35,73,0.12)] border border-[#0A2349]/15 overflow-hidden flex flex-col max-h-[min(600px,80vh)]"
           >
-            {/* Teal accent bar */}
-            <div className="h-1 bg-[#3ADBA1]" />
-
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-[#0A2349]/10">
               <div className="flex items-center gap-3">
                 <div className="relative shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-[#3ADBA1] flex items-center justify-center shadow-md shadow-[#3ADBA1]/25">
-                    <Check size={18} className="text-white" strokeWidth={3} />
+                  <div className="w-10 h-10 rounded-full bg-[#0A2349] flex items-center justify-center text-white text-sm font-semibold">
+                    NL
                   </div>
-                  <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white" />
                 </div>
                 <div>
-                  <p className="font-bold text-[#0F0F0F] text-sm leading-tight">Noah Lie</p>
-                  <p className="text-[#3ADBA1] text-xs font-semibold">Designer & utvikler</p>
+                  <p className="font-semibold text-[#0A2349] text-sm leading-tight">Noah Lie</p>
+                  <p className="text-[#0A2349]/60 text-xs">Designer og utvikler</p>
                 </div>
               </div>
               <button
@@ -101,14 +97,14 @@ export function ChatWidget() {
                   transition={{ duration: 0.15 }}
                 >
                   <div className="px-5 pt-4 pb-2">
-                    <div className="bg-[#FAFAFA] border border-gray-100 rounded-2xl rounded-tl-none px-4 py-3">
+                    <div className="bg-[#F3F4F6] rounded-xl px-4 py-3">
                       <p className="text-[#0F0F0F] text-sm leading-relaxed">
-                        Hei! 👋 Trenger du hjelp med nettside eller noe annet digitalt? Si ifra!
+                        Hei! Trenger du hjelp med nettside eller noe annet digitalt? Si ifra.
                       </p>
                     </div>
                   </div>
                   <div className="px-5 py-4">
-                    <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-widest mb-3">
+                    <p className="text-sm font-medium text-[#0A2349]/60 mb-3">
                       Hva kan vi hjelpe deg med?
                     </p>
                     <div className="space-y-2">
@@ -117,7 +113,7 @@ export function ChatWidget() {
                           key={t}
                           type="button"
                           onClick={() => { setTopic(t); setStep("form"); }}
-                          className="w-full text-left px-4 py-3 rounded-xl border border-gray-200 text-sm font-medium text-[#0F0F0F] hover:border-[#3ADBA1] hover:bg-[#3ADBA1]/5 transition-all"
+                          className="w-full text-left px-4 py-3 rounded-lg border border-[#0A2349]/15 text-sm font-medium text-[#0A2349] hover:border-[#0A2349] transition-colors"
                         >
                           {t}
                         </button>
@@ -186,7 +182,7 @@ export function ChatWidget() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-3 rounded-xl bg-[#3ADBA1] text-white font-semibold text-sm hover:bg-[#2BC48A] transition-colors disabled:opacity-60"
+                        className="w-full h-12 rounded-full bg-[#3ADBA1] text-[#0A2349] font-semibold text-sm hover:bg-[#2fcb93] transition-colors disabled:opacity-60"
                       >
                         {loading ? "Sender..." : "Send melding"}
                       </button>
@@ -204,7 +200,7 @@ export function ChatWidget() {
                   transition={{ duration: 0.2 }}
                   className="px-5 py-10 text-center"
                 >
-                  <div className="w-14 h-14 rounded-full bg-[#3ADBA1]/15 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-14 h-14 rounded-full bg-[#0A2349] flex items-center justify-center mx-auto mb-4">
                     <Check size={24} className="text-[#3ADBA1]" strokeWidth={2.5} />
                   </div>
                   <h3 className="font-bold text-[#0F0F0F] mb-2">Takk, {form.navn}!</h3>
@@ -229,10 +225,8 @@ export function ChatWidget() {
       {/* Floating toggle button */}
       <motion.button
         type="button"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => (isOpen ? close() : setIsOpen(true))}
-        className="w-14 h-14 rounded-full bg-[#3ADBA1] text-white shadow-xl shadow-[#3ADBA1]/30 flex items-center justify-center hover:bg-[#2BC48A] transition-colors"
+                onClick={() => (isOpen ? close() : setIsOpen(true))}
+        className="w-14 h-14 rounded-full bg-[#3ADBA1] text-[#0A2349] shadow-[0_4px_14px_rgba(10,35,73,0.18)] flex items-center justify-center hover:bg-[#2fcb93] transition-colors"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (

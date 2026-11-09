@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export function RotateWords({ text, words }: { text: string; words: string[] }) {
+export function RotateWords({ text, words, className }: { text: string; words: string[]; className?: string }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -14,10 +14,10 @@ export function RotateWords({ text, words }: { text: string; words: string[] }) 
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-x-4 text-4xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-tight">
-      <span className="text-[#0F0F0F] dark:text-white">{text}</span>
+    <div className={className ?? "flex flex-wrap items-center justify-center gap-x-4 text-4xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-tight"}>
+      <span className="text-[#0A2349] dark:text-white">{text}</span>
       <AnimatePresence mode="wait">
-        <motion.span key={words[index]} className="text-[#2BC48A] inline-flex">
+        <motion.span key={words[index]} className="text-[#0F9F70] inline-flex">
           {words[index].split('').map((char, i) => (
             <motion.span
               key={i}

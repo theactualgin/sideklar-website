@@ -5,8 +5,8 @@ import { notFound } from "next/navigation";
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { ChatWidget } from "@/components/ui/chat-widget";
+import { SiteButton } from "@/components/ui/site-button";
 import { getArticleBySlug } from "@/lib/articles";
-import { Clock, ArrowLeft } from "lucide-react";
 
 export default function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -25,57 +25,51 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
     <>
       <Nav />
       <main>
-        {/* Hero */}
-        <div className="relative h-72 md:h-96 overflow-hidden">
-          <img
-            src={article.image}
-            alt={article.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 px-6 pb-8 max-w-3xl mx-auto">
-            <span className="bg-white/90 backdrop-blur-sm text-[#0F0F0F] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
-              {article.category}
-            </span>
-          </div>
-        </div>
-
-        {/* Content */}
-        <section className="py-16 px-6 bg-[#FAFAFA]">
-          <div className="max-w-3xl mx-auto">
+        <article className="bg-white px-6 pb-24 pt-14 md:pb-32 md:pt-20">
+          <div className="mx-auto max-w-3xl">
             <a
               href="/artikler"
-              className="inline-flex items-center gap-1.5 text-sm text-[#6B7280] hover:text-[#3ADBA1] transition-colors mb-8"
+              className="text-sm font-medium text-[#0A2349]/60 underline decoration-transparent decoration-2 underline-offset-[6px] transition-colors hover:text-[#0A2349] hover:decoration-[#3ADBA1]"
             >
-              <ArrowLeft size={15} />
-              Alle artikler
+              ← Alle artikler
             </a>
 
-            <div className="flex items-center gap-4 mb-6">
-              <span className="text-sm text-[#6B7280]">{article.date}</span>
-              <span className="flex items-center gap-1 text-sm text-[#6B7280]">
-                <Clock size={13} />
-                {article.readTime}
-              </span>
-            </div>
-
-            <h1 className="text-3xl md:text-4xl font-bold text-[#0F0F0F] mb-8 leading-snug">
+            <p className="mt-10 text-sm text-[#0A2349]/55">
+              {article.category} · {article.date} · {article.readTime}
+            </p>
+            <h1 className="mt-4 text-4xl font-bold leading-[1.08] tracking-tight text-[#0A2349] md:text-6xl">
               {article.title}
             </h1>
 
-            <div className="space-y-4 text-[#374151] leading-relaxed">
+            <div className="mt-10 overflow-hidden rounded-xl border border-[#0A2349]/10 bg-[#F3F4F6]">
+              <img src={article.image} alt="" className="block aspect-[16/9] w-full object-cover" />
+            </div>
+
+            <div className="mt-12 space-y-5 text-[17px] leading-[1.75] text-[#0A2349]/75">
               {paragraphs.map((line, i) => {
                 if (line.startsWith("### ")) {
-                  return <h3 key={i} className="text-lg font-bold text-[#0F0F0F] mt-8 mb-2">{line.replace("### ", "")}</h3>;
+                  return (
+                    <h3 key={i} className="mt-10 text-xl font-semibold tracking-tight text-[#0A2349]">
+                      {line.replace("### ", "")}
+                    </h3>
+                  );
                 }
                 if (line.startsWith("## ")) {
-                  return <h2 key={i} className="text-2xl font-bold text-[#0F0F0F] mt-10 mb-3">{line.replace("## ", "")}</h2>;
+                  return (
+                    <h2 key={i} className="mt-14 text-3xl font-bold tracking-tight text-[#0A2349]">
+                      {line.replace("## ", "")}
+                    </h2>
+                  );
                 }
                 if (line === "---") {
-                  return <hr key={i} className="border-gray-200 my-8" />;
+                  return <hr key={i} className="my-10 border-[#0A2349]/10" />;
                 }
                 if (line.startsWith("- ")) {
-                  return <li key={i} className="ml-4 text-[#6B7280] list-disc">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
+                  return (
+                    <li key={i} className="ml-5 list-disc">
+                      {line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}
+                    </li>
+                  );
                 }
                 if (line.startsWith("| ")) {
                   return null;
@@ -83,31 +77,29 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
                 return (
                   <p
                     key={i}
-                    className="text-[#6B7280]"
                     dangerouslySetInnerHTML={{
-                      __html: line.replace(/\*\*(.*?)\*\*/g, "<strong class=\"font-semibold text-[#0F0F0F]\">$1</strong>"),
+                      __html: line.replace(
+                        /\*\*(.*?)\*\*/g,
+                        '<strong class="font-semibold text-[#0A2349]">$1</strong>'
+                      ),
                     }}
                   />
                 );
               })}
             </div>
 
-            {/* CTA */}
-            <div className="mt-16 bg-white border border-gray-100 rounded-2xl p-8 shadow-sm text-center">
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#3ADBA1] mb-3">Klar til å komme i gang?</p>
-              <h3 className="text-2xl font-bold text-[#0F0F0F] mb-3">La oss hjelpe deg</h3>
-              <p className="text-[#6B7280] text-sm mb-6 max-w-sm mx-auto leading-relaxed">
+            <div className="mt-20 border-t border-[#0A2349] pt-10">
+              <p className="text-sm font-medium text-[#0A2349]/55">Klar til å komme i gang?</p>
+              <h3 className="mt-3 text-3xl font-bold tracking-tight text-[#0A2349]">La oss hjelpe deg</h3>
+              <p className="mt-3 max-w-md text-base leading-relaxed text-[#0A2349]/70">
                 Vi leverer profesjonelle nettsider på 3 dager. Ta kontakt for en uforpliktende prat.
               </p>
-              <button
-                onClick={openChat}
-                className="inline-flex items-center px-6 py-3 rounded-lg bg-[#3ADBA1] text-[#0F0F0F] font-semibold text-sm hover:bg-[#2BC48A] transition-colors"
-              >
-                Ta kontakt →
-              </button>
+              <SiteButton onClick={openChat} size="lg" arrow className="mt-7">
+                Ta kontakt
+              </SiteButton>
             </div>
           </div>
-        </section>
+        </article>
       </main>
       <Footer />
       <ChatWidget />

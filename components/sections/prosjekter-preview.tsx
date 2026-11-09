@@ -1,86 +1,41 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowUpRight, Briefcase } from "lucide-react";
 import { projects } from "@/lib/projects";
-
-const featured = projects.slice(0, 3);
+import { Reveal } from "@/components/ui/reveal";
+import { SectionHead, TextLink } from "@/components/ui/section-head";
 
 export function ProsjekterPreview() {
   return (
-    <section className="w-full py-16 md:py-24 bg-[#FAFAFA]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-white px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-6xl">
+        <SectionHead
+          label="Konsepter og eksempler"
+          title="Slik kan nettsiden din se ut."
+          action={<TextLink href="/prosjekter">Se alle konsepter</TextLink>}
+        />
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-10"
-        >
-          <div>
-            <div className="mb-3 flex items-center gap-2">
-              <div className="flex h-6 w-6 items-center justify-center rounded bg-[#E6FAF4]">
-                <Briefcase className="h-3 w-3 text-[#3ADBA1]" />
-              </div>
-              <span className="text-sm text-[#6B7280]">Konsepter og eksempler</span>
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight text-[#0F0F0F] md:text-4xl">
-              Utvalgte{" "}
-              <span className="text-[#3ADBA1]">konsepter.</span>
-            </h2>
-          </div>
-          <a
-            href="/prosjekter"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#3ADBA1] hover:underline underline-offset-4 transition-colors self-start md:self-auto"
-          >
-            Se alle konsepter
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </motion.div>
-
-        {/* Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((project, i) => (
-            <motion.a
-              key={project.slug}
-              href={`/prosjekter/${project.slug}`}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="group block overflow-hidden rounded-2xl bg-white border border-gray-100 hover:border-[#3ADBA1]/30 transition-colors"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-3 left-3">
-                  <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#E6FAF4] text-[#3ADBA1]">
-                    {project.category}
+        <div className="grid gap-x-10 gap-y-14 md:grid-cols-2">
+          {projects.slice(0, 4).map((project, i) => (
+            <Reveal key={project.slug} delay={i * 0.06}>
+              <a href={`/prosjekter/${project.slug}`} className="group block">
+                <div className="overflow-hidden rounded-xl border border-[#0A2349]/10 bg-[#F3F4F6]">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} (konseptdesign)`}
+                    className="block aspect-[16/10] w-full object-cover object-top"
+                  />
+                </div>
+                <div className="mt-5 flex items-baseline justify-between gap-4">
+                  <h3 className="text-xl font-semibold tracking-tight text-[#0A2349] underline decoration-transparent decoration-2 underline-offset-[6px] transition-colors group-hover:decoration-[#3ADBA1]">
+                    {project.title}
+                  </h3>
+                  <span className="shrink-0 text-sm text-[#0A2349]/55">
+                    {project.category} · {project.year}
                   </span>
                 </div>
-                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow">
-                    <ArrowUpRight className="h-4 w-4 text-[#0F0F0F]" />
-                  </div>
-                </div>
-              </div>
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-2 mb-1.5">
-                  <h3 className="font-bold text-[#0F0F0F] leading-snug">{project.title}</h3>
-                  <span className="text-xs text-[#6B7280] font-mono shrink-0 mt-0.5">{project.year}</span>
-                </div>
-                <p className="text-sm text-[#6B7280] leading-relaxed line-clamp-2">{project.description}</p>
-              </div>
-            </motion.a>
+                <p className="mt-2 max-w-md text-[15px] leading-relaxed text-[#0A2349]/65">{project.description}</p>
+              </a>
+            </Reveal>
           ))}
         </div>
-
       </div>
     </section>
   );

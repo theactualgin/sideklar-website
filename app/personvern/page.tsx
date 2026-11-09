@@ -46,33 +46,28 @@ export default function PersonvernPage() {
     <>
       <Nav />
       <main className="bg-white">
-        <section className="w-full py-16 md:py-24">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-3 flex items-center gap-2">
-              <div className="flex h-6 w-6 items-center justify-center rounded bg-[#E6FAF4]">
-                <span className="text-xs text-[#3ADBA1]">🔒</span>
-              </div>
-              <span className="text-sm text-[#6B7280]">Personvern</span>
-            </div>
-            <h1 className="text-3xl font-bold tracking-tight text-[#0F0F0F] md:text-4xl mb-3">
+        <section className="w-full px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-4 text-sm font-medium text-[#0A2349]/55">Personvern</p>
+            <h1 className="mb-4 text-4xl font-bold leading-[1.05] tracking-tight text-[#0A2349] md:text-6xl">
               Personvernerklæring
             </h1>
-            <p className="text-[#6B7280] mb-12">Sist oppdatert: april 2026</p>
+            <p className="mb-14 text-[#0A2349]/60">Sist oppdatert: april 2026</p>
 
-            <div className="space-y-10">
+            <div>
               {sections.map((s) => (
-                <div key={s.title}>
-                  <h2 className="text-lg font-bold text-[#0F0F0F] mb-3">{s.title}</h2>
-                  <div className="text-[#6B7280] leading-relaxed text-sm space-y-2">
+                <div key={s.title} className="border-t border-[#0A2349]/10 py-8">
+                  <h2 className="mb-3 text-lg font-semibold tracking-tight text-[#0A2349]">{s.title}</h2>
+                  <div className="space-y-2 text-[15px] leading-relaxed text-[#0A2349]/70">
                     {s.content.split("\n").map((line, i) => {
                       if (line === "") return null;
                       if (line.startsWith("- **")) {
                         const match = line.match(/- \*\*(.*?)\*\*(.*)/);
                         return (
                           <p key={i} className="flex gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#3ADBA1] mt-2 shrink-0" />
+                            <span aria-hidden="true" className="text-[#0A2349]/40">–</span>
                             <span>
-                              <strong className="font-semibold text-[#0F0F0F]">{match?.[1]}</strong>
+                              <strong className="font-semibold text-[#0A2349]">{match?.[1]}</strong>
                               {match?.[2]}
                             </span>
                           </p>
@@ -85,10 +80,10 @@ export default function PersonvernPage() {
               ))}
             </div>
 
-            <div className="mt-16 rounded-2xl bg-[#F3F4F6] p-6">
-              <p className="text-sm text-[#6B7280]">
+            <div className="border-t border-[#0A2349] pt-8">
+              <p className="text-[15px] text-[#0A2349]/70">
                 Spørsmål om personvern? Ta kontakt på{" "}
-                <a href="mailto:hei@sideklar.no" className="font-semibold text-[#3ADBA1] hover:text-[#2BC48A] transition-colors">
+                <a href="mailto:hei@sideklar.no" className="font-semibold text-[#0A2349] underline decoration-[#3ADBA1] decoration-2 underline-offset-[6px]">
                   hei@sideklar.no
                 </a>
               </p>

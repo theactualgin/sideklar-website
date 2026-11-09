@@ -2,10 +2,10 @@
 
 import { use } from "react";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { ChatWidget } from "@/components/ui/chat-widget";
+import { SiteButton } from "@/components/ui/site-button";
 import { getProjectBySlug } from "@/lib/projects";
 
 export default function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -19,112 +19,80 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     }
   }
 
+  const sections = [
+    { heading: "Utgangspunktet", body: project.challenge },
+    { heading: "Konseptet", body: project.solution },
+    { heading: "Om konseptet", body: project.result },
+  ];
+
   return (
     <>
       <Nav />
       <main>
-        {/* Hero image */}
-        <div className="bg-[#F3F4F6] pt-28 pb-12 px-4 sm:px-6">
-          <div className="mx-auto max-w-5xl">
-            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl shadow-gray-300/40">
+        <article className="bg-white px-6 pb-24 pt-14 md:pb-32 md:pt-20">
+          <div className="mx-auto max-w-6xl">
+            <a
+              href="/prosjekter"
+              className="text-sm font-medium text-[#0A2349]/60 underline decoration-transparent decoration-2 underline-offset-[6px] transition-colors hover:text-[#0A2349] hover:decoration-[#3ADBA1]"
+            >
+              ← Alle prosjekter
+            </a>
+
+            <p className="mt-10 text-sm text-[#0A2349]/55">
+              {project.category} · {project.year}
+            </p>
+            <h1 className="mt-4 text-5xl font-bold leading-[1.02] tracking-tight text-[#0A2349] md:text-7xl">
+              {project.title}
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#0A2349]/70">{project.description}</p>
+
+            <div className="mt-12 overflow-hidden rounded-xl border border-[#0A2349]/10 bg-[#F3F4F6]">
               <img
                 src={project.image}
                 alt={`${project.title} (konseptdesign)`}
-                className="block w-full h-auto"
+                className="block h-auto w-full"
               />
             </div>
-            <span className="mt-5 inline-block bg-white text-[#0F0F0F] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-gray-200">
-              {project.category}
-            </span>
-          </div>
-        </div>
 
-        <section className="py-16 px-6 bg-[#FAFAFA]">
-          <div className="max-w-4xl mx-auto">
-            <a
-              href="/prosjekter"
-              className="inline-flex items-center gap-1.5 text-sm text-[#6B7280] hover:text-[#3ADBA1] transition-colors mb-10"
-            >
-              <ArrowLeft size={15} />
-              Alle prosjekter
-            </a>
-
-            <div className="grid md:grid-cols-3 gap-12">
-              {/* Main content */}
-              <div className="md:col-span-2">
-                <h1 className="text-4xl font-bold text-[#0F0F0F] mb-4">{project.title}</h1>
-                <p className="text-[#6B7280] leading-relaxed mb-10">{project.description}</p>
-
-                <div className="space-y-8">
-                  <div>
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-3">Utgangspunktet</h2>
-                    <p className="text-[#6B7280] leading-relaxed">{project.challenge}</p>
+            <div className="mt-16 grid gap-12 md:grid-cols-[1.6fr_1fr] md:gap-20">
+              <div>
+                {sections.map((s) => (
+                  <div key={s.heading} className="grid gap-3 border-t border-[#0A2349]/10 py-8 md:grid-cols-[10rem_1fr] md:gap-8">
+                    <h2 className="text-sm font-medium text-[#0A2349]/55">{s.heading}</h2>
+                    <p className="text-base leading-relaxed text-[#0A2349]/75">{s.body}</p>
                   </div>
-                  <div>
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-3">Konseptet</h2>
-                    <p className="text-[#6B7280] leading-relaxed">{project.solution}</p>
-                  </div>
-                  <div>
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-3">Om konseptet</h2>
-                    <p className="text-[#6B7280] leading-relaxed">{project.result}</p>
-                  </div>
-                </div>
-
-                {/* Second image */}
-                {project.images[1] && (
-                  <div className="mt-10 rounded-2xl overflow-hidden">
-                    <img
-                      src={project.images[1]}
-                      alt={`${project.title} — detalj`}
-                      className="w-full h-56 object-cover"
-                    />
-                  </div>
-                )}
+                ))}
               </div>
 
-              {/* Sidebar */}
-              <div className="space-y-6">
-                <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-[#6B7280] mb-4">Prosjektinfo</h3>
-                  <div className="space-y-3">
+              <aside className="md:sticky md:top-10 md:self-start">
+                <div className="border-t border-[#0A2349] pt-6">
+                  <dl className="space-y-5 text-sm">
                     <div>
-                      <span className="text-xs text-[#6B7280]">År</span>
-                      <p className="text-sm font-semibold text-[#0F0F0F]">{project.year}</p>
+                      <dt className="text-[#0A2349]/55">År</dt>
+                      <dd className="mt-1 font-semibold text-[#0A2349]">{project.year}</dd>
                     </div>
                     <div>
-                      <span className="text-xs text-[#6B7280]">Kategori</span>
-                      <p className="text-sm font-semibold text-[#0F0F0F]">{project.category}</p>
+                      <dt className="text-[#0A2349]/55">Type</dt>
+                      <dd className="mt-1 font-semibold text-[#0A2349]">{project.category}</dd>
                     </div>
                     <div>
-                      <span className="text-xs text-[#6B7280] block mb-2">Tjenester</span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.services.map((s) => (
-                          <span
-                            key={s}
-                            className="text-[10px] font-semibold uppercase tracking-widest bg-[#3ADBA1]/10 text-[#3ADBA1] px-2 py-1 rounded-full"
-                          >
-                            {s}
-                          </span>
-                        ))}
-                      </div>
+                      <dt className="text-[#0A2349]/55">Tjenester</dt>
+                      <dd className="mt-1 font-semibold text-[#0A2349]">{project.services.join(", ")}</dd>
                     </div>
+                  </dl>
+
+                  <div className="mt-8 border-t border-[#0A2349]/10 pt-6">
+                    <p className="text-lg font-semibold tracking-tight text-[#0A2349]">Vil du ha noe lignende?</p>
+                    <p className="mt-1 text-sm text-[#0A2349]/65">Ta kontakt for en uforpliktende prat.</p>
+                    <SiteButton onClick={openChat} arrow className="mt-5">
+                      Kom i gang
+                    </SiteButton>
                   </div>
                 </div>
-
-                <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm text-center">
-                  <p className="text-sm font-semibold text-[#0F0F0F] mb-1">Vil du ha noe lignende?</p>
-                  <p className="text-xs text-[#6B7280] mb-4">Ta kontakt for en uforpliktende prat.</p>
-                  <button
-                    onClick={openChat}
-                    className="w-full px-4 py-2.5 rounded-lg bg-[#3ADBA1] text-[#0F0F0F] font-semibold text-sm hover:bg-[#2BC48A] transition-colors"
-                  >
-                    Kom i gang →
-                  </button>
-                </div>
-              </div>
+              </aside>
             </div>
           </div>
-        </section>
+        </article>
       </main>
       <Footer />
       <ChatWidget />

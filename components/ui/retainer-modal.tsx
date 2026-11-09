@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { SiteButton } from "@/components/ui/site-button";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -68,7 +69,7 @@ export function RetainerModal({ open, defaultPlan, defaultTab = "retainer", onCl
 
           {/* Modal */}
           <motion.div
-            className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-lg bg-white rounded-xl shadow-[0_8px_30px_rgba(10,35,73,0.18)] overflow-hidden"
             initial={{ opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
@@ -85,16 +86,16 @@ export function RetainerModal({ open, defaultPlan, defaultTab = "retainer", onCl
             <div className="p-7">
               {submitted ? (
                 <div className="py-8 text-center">
-                  <div className="w-12 h-12 rounded-full bg-[#3ADBA1]/15 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-12 h-12 rounded-full bg-[#0A2349] flex items-center justify-center mx-auto mb-4">
                     <svg viewBox="0 0 20 20" fill="none" className="w-6 h-6 text-[#3ADBA1]">
                       <path d="M4 10l4.5 4.5L16 6" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <h3 className="text-lg font-bold text-[#0F0F0F] mb-1">Sendt!</h3>
                   <p className="text-sm text-[#6B7280]">Vi svarer vanligvis innen 24 timer.</p>
-                  <button onClick={onClose} className="mt-6 px-5 py-2.5 rounded-xl bg-[#3ADBA1] text-white text-sm font-semibold hover:bg-[#2BC48A] transition">
+                  <SiteButton onClick={onClose} className="mt-6">
                     Lukk
-                  </button>
+                  </SiteButton>
                 </div>
               ) : (
                 <>
@@ -180,7 +181,7 @@ export function RetainerModal({ open, defaultPlan, defaultTab = "retainer", onCl
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3.5 rounded-xl bg-[#3ADBA1] text-white font-semibold text-sm hover:bg-[#2BC48A] transition disabled:opacity-60"
+                      className="w-full h-12 rounded-full bg-[#3ADBA1] text-[#0A2349] font-semibold text-sm hover:bg-[#2fcb93] transition-colors disabled:opacity-60"
                     >
                       {loading ? "Sender..." : tab === "helsesjekk" ? "Send inn for gratis helsesjekk" : "Send forespørsel om retainer"}
                     </button>

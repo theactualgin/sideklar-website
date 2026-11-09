@@ -1,14 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
-import { User } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
+import { SiteButton } from "@/components/ui/site-button";
 
 const values = [
-  { title: "Rask levering", desc: "Nettsiden din er klar på 3 dager — ikke 3 måneder." },
+  { title: "Rask levering", desc: "Nettsiden din er klar på 3 dager, ikke 3 måneder." },
   { title: "Ærlig pris", desc: "Ingen skjulte kostnader. Du vet hva du betaler fra første dag." },
   { title: "Teknisk solid", desc: "Bygget med moderne teknologi som er rask, sikker og skalerbar." },
-  { title: "Alltid tilgjengelig", desc: "Du får direkte kontakt — ikke en supportkø." },
+  { title: "Alltid tilgjengelig", desc: "Du får direkte kontakt, ikke en supportkø." },
 ];
 
 export function OmContent() {
@@ -19,115 +19,61 @@ export function OmContent() {
   }
 
   return (
-    <section className="w-full py-16 md:py-24 bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-start">
-
-          {/* Left — Portrait */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl">
+    <section className="bg-white px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+          <Reveal>
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-[#0A2349]/10 bg-[#F3F4F6]">
               <Image
                 src="/noah.jpg"
-                alt="Noah Lie — grunnlegger av Sideklar"
+                alt="Noah Lie, grunnlegger av Sideklar"
                 fill
                 className="object-cover object-center"
                 priority
               />
             </div>
-            <div className="mt-4 flex items-center gap-3">
-              <div className="w-8 h-1 bg-[#3ADBA1] rounded-full" />
-              <div>
-                <p className="font-bold text-[#0F0F0F] text-sm">Noah Lie</p>
-                <p className="text-xs text-[#6B7280]">Grunnlegger & utvikler</p>
+            <p className="mt-4 text-sm text-[#0A2349]/60">
+              <span className="font-semibold text-[#0A2349]">Noah Lie</span> · Grunnlegger og utvikler
+            </p>
+          </Reveal>
+
+          <div className="flex flex-col justify-center lg:pt-6">
+            <Reveal>
+              <p className="mb-4 text-sm font-medium text-[#0A2349]/55">Om oss</p>
+              <h1 className="mb-10 text-5xl font-bold leading-[1.02] tracking-tight text-[#0A2349] md:text-7xl">
+                Hei, jeg er Noah.
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <div className="max-w-xl space-y-5 text-lg leading-relaxed text-[#0A2349]/70">
+                <p>
+                  Jeg har en bachelor i økonomi og ledelse og er litt i overkant glad i teknologi. Den kombinasjonen er grunnen til at Sideklar finnes.
+                </p>
+                <p className="font-medium text-[#0A2349]">
+                  Jeg så at mange bedrifter trengte en skikkelig nettside, men møtte enten høye priser, lang ventetid eller begge deler. Det ville jeg gjøre noe med.
+                </p>
+                <p>
+                  Sideklar er bygget på én tanke: at en profesjonell digital tilstedeværelse skal være tilgjengelig for alle. Raskt, ærlig og uten teknisk hodepine.
+                </p>
               </div>
-            </div>
-          </motion.div>
-
-          {/* Right — Text */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-col justify-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="mb-4 flex items-center gap-2"
-            >
-              <div className="flex h-6 w-6 items-center justify-center rounded bg-[#E6FAF4]">
-                <User className="h-3 w-3 text-[#3ADBA1]" />
-              </div>
-              <span className="text-sm text-[#6B7280]">Om oss</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
-              className="text-3xl font-bold tracking-tight text-[#0F0F0F] md:text-4xl lg:text-5xl leading-tight mb-8"
-            >
-              Hei, jeg er{" "}
-              <span className="text-[#3ADBA1]">Noah.</span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="space-y-5 text-[#6B7280] leading-relaxed"
-            >
-              <p>
-                Jeg har en bachelor i økonomi og ledelse og er litt i overkant glad i teknologi. Den kombinasjonen er grunnen til at Sideklar finnes.
-              </p>
-              <p className="text-[#0F0F0F] font-medium">
-                Jeg så at mange bedrifter trengte en skikkelig nettside, men møtte enten høye priser, lang ventetid eller begge deler. Det ville jeg gjøre noe med.
-              </p>
-              <p>
-                Sideklar er bygget på én tanke: at en profesjonell digital tilstedeværelse skal være tilgjengelig for alle — raskt, ærlig og uten teknisk hodepine.
-              </p>
-            </motion.div>
-
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              onClick={openChat}
-              className="mt-10 self-start px-7 py-3.5 rounded-full bg-[#3ADBA1] text-[#0F0F0F] font-semibold text-sm hover:bg-[#2BC48A] transition-colors shadow-lg shadow-[#3ADBA1]/30"
-            >
-              Ta en uforpliktende prat
-            </motion.button>
-          </motion.div>
+              <SiteButton size="lg" arrow onClick={openChat} className="mt-10">
+                Ta en uforpliktende prat
+              </SiteButton>
+            </Reveal>
+          </div>
         </div>
 
-        {/* Values */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-24 border-t border-gray-100 pt-16"
-        >
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((v, i) => (
-              <motion.div
-                key={v.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.55 + i * 0.07 }}
-                className="rounded-2xl p-6 bg-[#F3F4F6]"
-              >
-                <div className="w-8 h-1 bg-[#3ADBA1] rounded-full mb-4" />
-                <h3 className="font-bold text-[#0F0F0F] mb-2">{v.title}</h3>
-                <p className="text-sm text-[#6B7280] leading-relaxed">{v.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="mt-24 grid gap-x-10 border-t border-[#0A2349] pt-10 sm:grid-cols-2 lg:grid-cols-4">
+          {values.map((v, i) => (
+            <Reveal key={v.title} delay={i * 0.05}>
+              <div className="py-4">
+                <h2 className="text-lg font-semibold tracking-tight text-[#0A2349]">{v.title}</h2>
+                <p className="mt-2 text-[15px] leading-relaxed text-[#0A2349]/65">{v.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

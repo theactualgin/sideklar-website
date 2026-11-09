@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
 import { MenuVertical } from "@/components/ui/menu-vertical";
 import { Logo } from "@/components/ui/logo";
+import { SiteButton } from "@/components/ui/site-button";
 
 const navLinks = [
   { label: "Tjenester", href: "/tjenester" },
@@ -23,47 +23,26 @@ export function Nav() {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-100">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <nav className="border-b border-[#0A2349]/10 bg-white px-6">
+      <div className="max-w-6xl mx-auto h-16 flex items-center justify-between">
         <a href="/">
           <Logo />
         </a>
-        <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-[#6B7280] dark:text-[#9CA3AF]">
+        <ul className="hidden items-center gap-9 text-sm font-medium md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <motion.a
+              <a
                 href={link.href}
-                initial="rest"
-                whileHover="hover"
-                animate="rest"
-                className="relative inline-block"
+                className="text-[#0A2349]/70 underline decoration-transparent decoration-2 underline-offset-[8px] transition-colors hover:text-[#0A2349] hover:decoration-[#3ADBA1]"
               >
-                <motion.span
-                  variants={{
-                    rest: { color: "#6B7280", y: 0 },
-                    hover: { color: "#3ADBA1", y: -1 },
-                  }}
-                  transition={{ duration: 0.2 }}
-                  className="inline-block"
-                >
-                  {link.label}
-                </motion.span>
-                <motion.span
-                  variants={{
-                    rest: { scaleX: 0 },
-                    hover: { scaleX: 1 },
-                  }}
-                  transition={{ duration: 0.2 }}
-                  style={{ originX: 0 }}
-                  className="absolute -bottom-0.5 left-0 right-0 h-px bg-[#3ADBA1] block"
-                />
-              </motion.a>
+                {link.label}
+              </a>
             </li>
           ))}
         </ul>
-        <button onClick={openWidget} className="hidden md:inline-flex items-center px-5 py-2 rounded-lg bg-[#3ADBA1] text-white text-sm font-semibold hover:bg-[#2BC48A] transition-colors">
+        <SiteButton variant="dark" onClick={openWidget} size="sm" className="hidden md:inline-flex">
           Kontakt oss
-        </button>
+        </SiteButton>
         <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Toggle menu">
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -74,9 +53,9 @@ export function Nav() {
             menuItems={navLinks}
             onItemClick={() => setOpen(false)}
           />
-          <button onClick={() => { setOpen(false); openWidget(); }} className="w-full px-5 py-3 rounded-lg bg-[#3ADBA1] text-[#0F0F0F] font-semibold">
+          <SiteButton variant="dark" onClick={() => { setOpen(false); openWidget(); }} size="lg" className="w-full">
             Kontakt oss
-          </button>
+          </SiteButton>
         </div>
       )}
     </nav>

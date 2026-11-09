@@ -1,35 +1,30 @@
-"use client";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/reveal";
 
 export function RetainerCredibility() {
   return (
-    <section className="pt-8 pb-24 px-6 bg-[#FAFAFA]">
-      <div className="max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm"
-        >
-          <div className="text-xs font-bold uppercase tracking-widest text-[#3ADBA1] mb-4">Hvem står bak</div>
-          <h3 className="text-2xl font-bold text-[#0F0F0F] mb-5 leading-snug">
-            Lanseringsdagen er bare starten
-          </h3>
-
-          <div className="space-y-3 text-sm text-[#6B7280] leading-relaxed">
+    <section className="bg-white px-6 pb-24 md:pb-32">
+      <Reveal>
+        <div className="mx-auto grid max-w-6xl gap-8 border-t border-[#0A2349]/10 pt-20 md:grid-cols-[1fr_1.6fr] md:gap-20 md:pt-28">
+          <div>
+            <p className="mb-4 text-sm font-medium text-[#0A2349]/55">Hvem står bak</p>
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-[#0A2349] md:text-4xl">
+              Lanseringsdagen er bare starten
+            </h2>
+          </div>
+          <div className="max-w-xl space-y-4 text-base leading-relaxed text-[#0A2349]/70">
             <p>
-              Vi har bygd nettsider for bedrifter i alle størrelser — og vi ser det samme mønsteret gang på gang: siden blir levert, ingen eier den etterpå, og den mister sakte relevans.
+              Vi har bygd nettsider for bedrifter i alle størrelser, og vi ser det samme mønsteret gang på gang: siden blir levert, ingen eier den etterpå, og den mister sakte relevans.
             </p>
             <p>
-              Det er derfor vi tilbyr retainer. Ikke for å fylle kalenderen, men fordi vi mener <strong className="font-semibold text-[#0F0F0F]">en nettside trenger noen som faktisk følger den opp</strong>. Vi tar på oss et begrenset antall kunder — så du alltid har reell kapasitet, ikke bare et løfte om responstid.
+              Det er derfor vi tilbyr retainer. Ikke for å fylle kalenderen, men fordi vi mener{" "}
+              <strong className="font-semibold text-[#0A2349]">en nettside trenger noen som faktisk følger den opp</strong>. Vi tar på oss et begrenset antall kunder, så du alltid har reell kapasitet, ikke bare et løfte om responstid.
             </p>
-            <p className="font-semibold text-[#0F0F0F]">
+            <p className="font-semibold text-[#0A2349]">
               Du får noen som kjenner nettsiden din, bryr seg om den, og er tilgjengelig når noe må gjøres.
             </p>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
