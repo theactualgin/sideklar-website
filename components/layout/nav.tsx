@@ -48,7 +48,7 @@ export function Nav() {
         </button>
       </div>
       {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-8 py-8 flex flex-col gap-8">
+        <div className="md:hidden flex flex-col gap-8 border-t border-[#0A2349]/10 bg-white py-8">
           <MenuVertical
             menuItems={navLinks}
             onItemClick={() => setOpen(false)}

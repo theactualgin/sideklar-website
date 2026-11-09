@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GlyphPortal from "@/components/ui/glyph-portal";
 import { RotateWords } from "@/components/ui/rotate-words";
 import { SiteButton } from "@/components/ui/site-button";
@@ -33,7 +33,35 @@ function Field() {
   );
 }
 
+/**
+ * Quiet scenery behind the word: three flat mountain ridges that drift very slowly.
+ * Pinned like the hero, and fades out as the zoom begins.
+ */
+function HeroDecor() {
+  return (
+    <div data-hero-decor aria-hidden="true">
+      <div data-hero-ridges>
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+          <path
+            fill="rgba(10,35,73,.07)"
+            d="M0 200V120L110 70L210 110L330 40L450 105L560 60L700 125L830 55L960 110L1090 45L1210 100L1330 65L1440 95V200Z"
+          />
+          <path
+            fill="rgba(58,219,161,.28)"
+            d="M0 200V150L140 100L250 140L380 80L520 145L650 105L790 150L930 90L1060 140L1200 95L1320 135L1440 110V200Z"
+          />
+          <path
+            fill="rgba(10,35,73,.12)"
+            d="M0 200V175L160 140L300 170L450 125L600 172L760 138L900 175L1050 130L1190 170L1330 145L1440 165V200Z"
+          />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 export function Hero() {
+  const rootRef = useRef<HTMLDivElement>(null);
   // The portal measures real letter shapes, so it needs the actual loaded font name
   // (not a CSS variable) and must start only after that font is ready.
   const [face, setFace] = useState<string | null>(null);
@@ -51,10 +79,19 @@ export function Hero() {
   }, []);
 
   return (
-    <div data-hero>
+    <div data-hero ref={rootRef}>
       <style>{`
-        [data-hero]{--gp-paper:#ffffff;--gp-ink:#0A2349;--gp-field:#0a2349;--gp-foreground:#ffffff;}
-        .dark [data-hero]{--gp-paper:#0F0F0F;--gp-ink:#ffffff;}
+        [data-hero]{position:relative;background:#ffffff;}
+        [data-hero] > section{--gp-paper:transparent;--gp-ink:#0A2349;--gp-field:#0a2349;--gp-foreground:#ffffff;}
+        [data-hero-decor]{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none;opacity:calc(1 - var(--hero-p,0) * 5);}
+        [data-hero]:has(> section[data-gp-motion=off]) [data-hero-decor]{position:absolute;inset:0 0 auto 0;margin-bottom:0;}
+        [data-hero-ridges]{position:absolute;left:-5%;right:-5%;bottom:0;height:24%;transform:translateY(calc(var(--hero-p,0) * 160px));}
+        [data-hero-ridges] svg{display:block;width:100%;height:100%;}
+        [data-hero-ridges] path:nth-child(1){animation:hero-drift 46s ease-in-out infinite alternate;}
+        [data-hero-ridges] path:nth-child(2){animation:hero-drift 36s ease-in-out infinite alternate-reverse;}
+        [data-hero-ridges] path:nth-child(3){animation:hero-drift 28s ease-in-out infinite alternate;}
+        @keyframes hero-drift{from{transform:translateX(-22px)}to{transform:translateX(22px)}}
+        @media (prefers-reduced-motion:reduce){[data-hero-ridges] path{animation:none!important;}}
         [data-hero] [data-gp-touch-picker]{display:none!important;}
         [data-hero] [data-gp-hint]{display:none;}
         [data-hero] [data-gp-caption]{inset:auto 0 88px;justify-content:center;font-size:13px;}
@@ -71,12 +108,15 @@ export function Hero() {
 
       <h1 className="sr-only">Sideklar – nettsider, logoer og grafisk profil for norske bedrifter</h1>
 
+      <HeroDecor />
+
       {!face ? <div style={{ height: "100svh" }} aria-hidden="true" /> : <GlyphPortal
         word="SIDEKLAR"
         fontFamily={face}
         fontWeight={800}
         scrollLength={2.2}
         enterLabel="Se hvordan det fungerer"
+        onProgress={(p) => rootRef.current?.style.setProperty("--hero-p", String(p))}
         background={<Field />}
         front={
           <>
